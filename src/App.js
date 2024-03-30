@@ -109,7 +109,8 @@ function App() {
               <li>{'Pid:'+item.patient_id}</li>
               <li>{'height:'+item.height}</li>
               <li>{'weight:'+item.weight}</li>
-              <li>{'Name:'+item.patient_name}</li>
+
+              
               <li>{nj1}</li>
             </div>
           ))}
