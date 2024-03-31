@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="header">
+      <a href="#"
+        ><img
+          src="img/Logotipo de salud médica de personas ilustración de icono identidad de marca | Vector Premium.jpg"
+          class="logo"
+          alt=""
+      /></a>
+
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="patient-login.html">Patient</a></li>
+          <li><a href="doctor-login.html">Doctor</a></li>
+          <li><a href="admin-login.html">Admin</a></li>
+          <li>
+            <a href="cart.html"><i class="far fa-shopping-bag"></i> </a>
+          </li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section class="info">
+      <div class="container">
+        <div class="patient-info-section">
+          <h2 class="section-title">Add Patient Information</h2>
+          <form action="#" class="patient-form">
+            <div class="form-group">
+              <label for="first-name" class="form-label">First Name *</label>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="last-name" class="form-label">Last Name *</label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Id *</label>
+              <input type="email" id="email" name="email" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="mobile-number" class="form-label"
+                >Mobile Number *</label
+              >
+              <input
+                type="text"
+                id="mobile-number"
+                name="mobile-number"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gender" class="form-label">Gender *</label>
+              <select id="gender" name="gender" class="form-select">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="dob" class="form-label">Date of Birth *</label>
+              <input type="date" id="dob" name="dob" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="blood-group" class="form-label">Blood Group *</label>
+              <select id="blood-group" name="blood-group" class="form-select">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
