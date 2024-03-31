@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
       window.location.href = 'doctor-dashboard.html';
     } 
     
-    else if (page === 'Admin' && password === formData) {
+    else if (page === 'Admin' && password === 'admin123' && username==='admin') {
         // Successful login
         window.location.href = 'admin-dashboard.html';
     }
