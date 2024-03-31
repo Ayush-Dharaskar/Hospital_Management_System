@@ -62,6 +62,37 @@ app.post('/patientextract', async (req, res) => {
   }
 });
 
+app.post('/loginp', async (req, res) => {
+  try {
+    const text = req.body.username; // Extract inputText from the request body
+    console.log(text);
+    const patientQuery = 'SELECT TO_CHAR(dob, \'DD/MM/YYYY\') AS formatted_dob FROM patient where patient_id=($1)';
+
+    const patientResult = await pool.query(patientQuery, [text]);
+    console.log(patientResult.rows[0].formatted_dob);
+    console.log(patientResult.rows[0]);
+    res.json({ patient: patientResult.rows[0]});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
+  }
+});
+app.post('/logind', async (req, res) => {
+  try {
+    const text = req.body.username; // Extract inputText from the request body
+    console.log(text);
+    const docq = 'SELECT pass FROM doctor where doctor_id=($1)';
+
+    const docres = await pool.query(docq, [text]);
+    console.log(docres.rows[0].pass);
+    console.log(docres.rows[0]);
+    res.json({ doctor: docres.rows[0]});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
+  }
+});
+
 
 app.post('/add_text_to_postgresql', async (req, res) => {
   try {
