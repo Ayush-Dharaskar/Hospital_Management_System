@@ -122,6 +122,32 @@ app.post('/fetch', async (req, res) => {
   }
 });
 
+app.post('/newpatient', async (req, res) => {
+  try {
+    const text = req.body.formData; // Extract inputText from the request body
+    pid=req.body.randd;
+    pname = text.firstName+text.lastName;
+    mob = text.mobileNumber;
+    gender = text.gender;
+    add ='manipal'
+    age =17
+    height =160
+    weight = 69
+    blood = text.bloodGroup;
+    dob = text.dob
+    console.log(text);
+    console.log(pid);
+    console.log(pname);
+    const patientQuery = 'insert into patient values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)';
+
+    const patientResult = await pool.query(patientQuery, [pid,pname,mob,add,gender,age,height,weight,blood,dob]);
+
+    res.status(200);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
+  }
+});
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

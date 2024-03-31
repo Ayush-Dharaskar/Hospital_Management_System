@@ -1,5 +1,43 @@
 
-var page='patient';
+var page='Patient';
+
+//Array to store generated numbers
+let generatedNumbers = [];
+var randd;
+// Function to generate a random integer between min and max (inclusive)
+function generateRandomInteger(min, max) {
+  // Check if all possible numbers are generated
+  if (generatedNumbers.length === (max - min + 1)) {
+    console.log("All possible numbers are generated.");
+    return null; // Return null to indicate no available numbers left
+  }
+
+  let randomNum;
+  do {
+    randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  } while (generatedNumbers.includes(randomNum));
+
+  // Store the generated number
+  generatedNumbers.push(randomNum);
+  randd=randomNum;
+  
+  return randomNum;
+}
+
+// Example usage:
+const minRange = 10000;
+const maxRange = 99999;
+
+// Generate a random number
+const randomNumber = generateRandomInteger(minRange, maxRange);
+randd=randomNumber;
+
+if (randomNumber !== null) {
+  console.log("Generated random number:", randomNumber);
+} else {
+  console.log("No available numbers left.");
+}
+
 
 document.addEventListener("DOMContentLoaded", function() {
   var navigationMenu = document.getElementById("navbar");
@@ -26,8 +64,62 @@ document.addEventListener("DOMContentLoaded", function() {
   // Use activeLinkName variable as needed
   console.log("Active link:", activeLinkName);
 });
+var but = document.getElementById('newpa');
+if(but!=null){
+  but.onclick = async function(event) {
+    event.preventDefault(); 
+    var formData = {
+            firstName: document.getElementById("first-name").value,
+            lastName: document.getElementById("last-name").value,
+            email: document.getElementById("email").value,
+            mobileNumber: document.getElementById("mobile-number").value,
+            gender: document.getElementById("gender").value,
+            dob: document.getElementById("dob").value,
+            bloodGroup: document.getElementById("blood-group").value
+          };
+          console.log(formData);
+          
+        const response = await fetch('http://localhost:5000/newpatient', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ formData,randd })
+    });
+  }
+}
+// NEW PATIENT FORM
+// document.getElementById("newpa").addEventListener("submit", async function(event) {
+//   // Get the form and submit button
+//   const form = document.getElementById('patientForm');
+//     // Prevent the default form submission behavior
+//     form.getElementById('newpa').addEventListener('click', async function(event) {
+//       event.preventDefault();
 
-
+//     // Extract form data
+//     var formData = {
+//       firstName: document.getElementById("first-name").value,
+//       lastName: document.getElementById("last-name").value,
+//       email: document.getElementById("email").value,
+//       mobileNumber: document.getElementById("mobile-number").value,
+//       gender: document.getElementById("gender").value,
+//       dob: document.getElementById("dob").value,
+//       bloodGroup: document.getElementById("blood-group").value
+//     };
+    
+//     console.log(formData);
+//     });
+//     // const response = await fetch('http://localhost:5000/newpatient', {
+//     //   method: 'POST',
+//     //   headers: {
+//     //     'Content-Type': 'application/json'
+//     //   },
+//     //   body: JSON.stringify({ formData,randd })
+//     // });
+//     // vardata = await response.json();
+//     // formData=vardata.patient.formatted_dob;
+//     // Print the extracted data to the console
+// });
 // function navigateTo(userType) {
 //   page = userType;
 //     if (userType === 'patient') {
@@ -42,6 +134,12 @@ document.addEventListener("DOMContentLoaded", function() {
 //     }
 //   }
   
+// var logbutton = document.getElementById('newpa');
+// if(logbutton!=null){
+//   but.onclick = function() {
+    
+//   }
+// }
   document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent default form submission
     
