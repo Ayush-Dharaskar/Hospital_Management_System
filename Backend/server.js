@@ -126,7 +126,7 @@ app.post('/newpatient', async (req, res) => {
   try {
     const text = req.body.formData; // Extract inputText from the request body
     pid=req.body.randd;
-    pname = text.firstName+text.lastName;
+    pname = text.firstName+' '+text.lastName;
     mob = text.mobileNumber;
     gender = text.gender;
     add ='manipal'
