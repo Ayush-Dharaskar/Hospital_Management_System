@@ -262,7 +262,7 @@ $(document).ready(async function() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({pid:patientId,dept: document.getElementById('department').value(), doc: document.getElementById('doctor').value(), date: document.getElementById('appointment-date').value(), concern: document.getElementById('concern').value()})
+      body: JSON.stringify({pid:patientId,dept: document.getElementById('department').value, doc: document.getElementById('doctor').value, date: document.getElementById('appointment-date').value, concern: document.getElementById('concern').value})
     });
     var department = $('#department').val();
     var doctor = $('#doctor').val();

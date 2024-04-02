@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 // Create an instance of Express
 const app = express();
-const port = 5005; // Choose a port for your server
+const port = 3424; // Choose a port for your server
 
 // Middleware setup
 app.use(bodyParser.json());
@@ -196,8 +196,9 @@ app.post('/reqappointment', async (req, res) => {
     const aid = 'select count(*) from appointment'; 
     aid = aid+1;
     
-    console.log(req.body);
+    
     console.log(aid);
+    console.log(concern);
     const queryText = 'insert into appointment(appointment_id,patient_id,doctor_id,appoint_date,status,reason) values($1,$1,$1,$1,$1)';
     const result = await pool.query(queryText,[aid,pid,doc,date,status,concern]);
 
@@ -211,3 +212,4 @@ app.post('/reqappointment', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
