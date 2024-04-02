@@ -15,7 +15,7 @@
       <li><a href="patient-dashboard.html">Dashboard</a></li>
       <li><a href="index.html">Medical Records</a></li>
       <li><a href="#">Prescription</a></li>
-      <li><a href="patient-appointment.html">Appointments</a></li>
+      <li><a href="patient-appointment.html" id="book-appointment">Appointments</a></li>
     </ul>
   </div>
   
@@ -74,7 +74,7 @@
 
 <script>
   async function fetchPatientDetails(pid) {
-    const response = await fetch('http://localhost:5000/patientextract', {
+    const response = await fetch('http://localhost:5005/patientextract', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -99,6 +99,9 @@
   const patientId = urlParams.get('patientId');
   // Call fetchPatientDetails function when the page loads
   window.onload = fetchPatientDetails(patientId);
+  document.getElementById('book-appointment').addEventListener('click', function() {
+    window.location.href = 'patient-appointment.html?patientId=' + patientId;
+  });
 </script>
 
 </body>

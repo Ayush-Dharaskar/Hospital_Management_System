@@ -192,7 +192,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
 $(document).ready(async function() {
-  const response = await fetch('http://localhost:5000/deptextract', {
+  const response = await fetch('http://localhost:5005/deptextract', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ $(document).ready(async function() {
     deptselect.appendChild(option);
   });
   document.getElementById('department').addEventListener('change', async function() {
-    const response = await fetch('http://localhost:5000/doctor_from_department', {
+    const response = await fetch('http://localhost:5005/doctor_from_department', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -253,9 +253,17 @@ $(document).ready(async function() {
       modal.hide();
     }
   });
-
-  $('#appointment-form').submit(function(event) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const patientId = urlParams.get('patientId');
+  $('#appointment-form').submit(async function(event) {
     event.preventDefault();
+    const response = await fetch('http://localhost:5005/reqappointment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({pid:patientId,dept: document.getElementById('department').value(), doc: document.getElementById('doctor').value(), date: document.getElementById('appointment-date').value(), concern: document.getElementById('concern').value()})
+    });
     var department = $('#department').val();
     var doctor = $('#doctor').val();
     var date = $('#appointment-date').val();

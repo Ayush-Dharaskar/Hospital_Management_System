@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 // Create an instance of Express
 const app = express();
-const port = 5000; // Choose a port for your server
+const port = 5005; // Choose a port for your server
 
 // Middleware setup
 app.use(bodyParser.json());
@@ -183,3 +183,31 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
+app.post('/reqappointment', async (req, res) => {
+  try {
+    var pid = req.body.pid;
+    var  dept  = req.body.dept;
+    var doc = req.body.doc;
+    var date = req.body.date;
+    var concern =req.body.concern;
+    var status = 'Pending';
+    
+
+    const aid = 'select count(*) from appointment'; 
+    aid = aid+1;
+    
+    console.log(req.body);
+    console.log(aid);
+    const queryText = 'insert into appointment(appointment_id,patient_id,doctor_id,appoint_date,status,reason) values($1,$1,$1,$1,$1)';
+    const result = await pool.query(queryText,[aid,pid,doc,date,status,concern]);
+
+    res.status(200);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
