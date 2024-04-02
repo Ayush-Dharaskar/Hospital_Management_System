@@ -1,45 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hospital Management System</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <section id="header">
-      <a href="#"
-        ><img
-          src="img/Logotipo de salud médica de personas ilustración de icono identidad de marca | Vector Premium.jpg"
-          class="logo"
-          alt=""
-      /></a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-      <div>
-        <ul id="navbar">
-          <li><a href="index.html">Home</a></li>
-          <li><a class="active" href="patient-dashboard.html">Patient</a></li>
-          <li><a href="doctor-login.html">Doctor</a></li>
-          <li><a href="admin-login.html">Admin</a></li>
-          <li>
-            <a href="cart.html"><i class="far fa-shopping-bag"></i> </a>
-          </li>
-          <a href="#" id="close"><i class="far fa-times"></i></a>
-        </ul>
+<div class="container">
+  <!-- Drawer Menu -->
+  <div class="drawer">
+    <ul>
+      <li><a href="patient-dashboard.html">Dashboard</a></li>
+      <li><a href="index.html">Medical Records</a></li>
+      <li><a href="#">Prescription</a></li>
+      <li><a href="patient-appointment.html">Appointments</a></li>
+    </ul>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Patient Dashboard</h1>
+    <div class="patient-details">
+      <h2>Patient Details</h2>
+      <div class="detail">
+        <label>Name:</label>
+        <span id="name">Fetching...</span>
       </div>
-      <div id="mobile">
-        <i id="bar" class="fas fa-outdent"></i>
+      <div class="detail">
+        <label>Date of Birth:</label>
+        <span id="dob">Fetching...</span>
       </div>
-    </section>
-
-    <div class="landing-content">
-      <!-- Add your content here -->
-      <div class="hospital-info">
-        <h2>MAI BOHOT BEEMAR HU</h2>
-        <p>BHADWO BACHAO MUJHE</p>
+      <div class="detail">
+        <label>Age:</label>
+        <span id="age">Fetching...</span>
       </div>
+      <div class="detail">
+        <label>Phone:</label>
+        <span id="phone">Fetching...</span>
+      </div>
+      <div class="detail">
+        <label>Address:</label>
+        <span id="address">Fetching...</span>
+      </div>
+      <div class="detail">
+        <label>Gender:</label>
+        <span id="gender">Fetching...</span>
+      </div>
+      <div class="detail">
+        <label>Blood Group:</label>
+        <span id="blood-group">Fetching...</span>
+      </div>
+      <div class="detail">
+        <label>Height:</label>
+        <span id="height">Fetching...</span>
+        <span>cm</span>
+      </div>
+      <div class="detail">
+        <label>Weight:</label>
+        <span id="weight">Fetching...</span>
+        <span>kg</span>
+      </div>
+      <div class="detail">
+        <label>BMI:</label>
+        <span id="bmi">Fetching...</span>
+      </div>
+      <button id="calculate-bmi">Calculate BMI</button>
+      <button id="book-appointment">Book Appointment</button>
     </div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
-  </body>
+<script>
+  async function fetchPatientDetails(pid) {
+    const response = await fetch('http://localhost:5000/patientextract', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: pid })
+      });
+
+    const data = await response.json();
+    console.log(data);
+        document.getElementById('name').textContent = data.patient.patient_name;
+        document.getElementById('dob').textContent = data.patient.dob;
+        document.getElementById('age').textContent = data.patient.age;
+        document.getElementById('phone').textContent = data.patient.phone;
+        document.getElementById('address').textContent = data.patient.address;
+        document.getElementById('gender').textContent = data.patient.gender;
+        document.getElementById('blood-group').textContent = data.patient.blood;
+        document.getElementById('height').textContent = data.patient.height;
+        document.getElementById('weight').textContent = data.patient.weight;
+        document.getElementById('bmi').textContent = data.bmi;
+  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const patientId = urlParams.get('patientId');
+  // Call fetchPatientDetails function when the page loads
+  window.onload = fetchPatientDetails(patientId);
+</script>
+
+</body>
 </html>

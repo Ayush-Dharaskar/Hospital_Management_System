@@ -34,6 +34,7 @@ randd=randomNumber;
 
 if (randomNumber !== null) {
   console.log("Generated random number:", randomNumber);
+  console.log("Generated numbers:", generatedNumbers);
 } else {
   console.log("No available numbers left.");
 }
@@ -140,6 +141,7 @@ if(but!=null){
     
 //   }
 // }
+
   document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent default form submission
     
@@ -202,7 +204,9 @@ if(but!=null){
     // Dummy validation (replace with actual validation logic)
     if (page==='Patient' && password === formData) {
       // Successful login
-      window.location.href = 'patient-dashboard.html';
+      const username = encodeURIComponent(document.getElementById('username').value); // Assuming username is retrieved from an element with id 'username'
+window.location.href = `patient-dashboard.html?patientId=${username}`;
+
   }
     else if (page === 'Doctor' && password === formData) {
       // Successful login

@@ -48,19 +48,35 @@ app.post('/add_text_to_postgresql', async (req, res) => {
 
 app.post('/patientextract', async (req, res) => {
   try {
-    const text = req.body.inputText; // Extract inputText from the request body
+    const text = req.body.id; // Extract inputText from the request body
     const patientQuery = 'SELECT * FROM patient WHERE patient_id = $1';
     const bmiQuery = 'SELECT get_bmi($1) AS bmi'; // No need for DO block
+    const dobQuery = 'SELECT TO_CHAR(dob, \'DD/MM/YYYY\') AS formatted_dob FROM patient where patient_id = $1';
 
     const patientResult = await pool.query(patientQuery, [text]);
     const bmiResult = await pool.query(bmiQuery, [text]);
-
-    res.json({ patient: patientResult.rows, bmi: bmiResult.rows[0].bmi });
+    const dobResult = await pool.query(dobQuery,[text])
+    patientResult.rows[0].dob=dobResult.rows[0].formatted_dob;
+    res.json({ patient: patientResult.rows[0], bmi: bmiResult.rows[0].bmi });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
   }
 });
+
+app.post('/deptextract', async (req, res) => {
+  try {
+    // Extract inputText from the request body
+    const deptquery = 'SELECT * from department';
+    const depts=await pool.query(deptquery);
+    res.json({ department: depts.rows });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
+  }
+});
+
+
 
 app.post('/loginp', async (req, res) => {
   try {
@@ -148,7 +164,22 @@ app.post('/newpatient', async (req, res) => {
     res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
   }
 });
+
+app.post('/doctor_from_department', async (req, res) => {
+  try {
+    var  text  = req.body.dept;
+    console.log(text);
+    const queryText = 'select * from doctor where dept_id = $1';
+    const result = await pool.query(queryText,[text]);
+    console.log(result);
+    res.json({name: result.rows});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
