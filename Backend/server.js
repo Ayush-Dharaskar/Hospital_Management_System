@@ -193,8 +193,12 @@ app.post('/reqappointment', async (req, res) => {
     var status = 'Pending';
     
 
-    var aid = 70;
+    var queryaid = 'select count(appointment_id) from appointment'; 
+    var aid = await pool.query(queryaid);
+
+    console.log(aid.rows[0].count);
     
+    aid=parseInt(aid.rows[0].count)+1;
     
     console.log(aid);
     console.log(concern);
