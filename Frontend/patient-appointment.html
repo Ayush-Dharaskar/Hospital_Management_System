@@ -41,10 +41,10 @@
   <!-- Drawer Menu -->
   <div class="drawer">
     <ul>
-      <li><a href="patient-dashboard.html">Dashboard</a></li>
+      <li><a id="patient-dashboard">Dashboard</a></li>
       <li><a href="index.html">Medical Records</a></li>
       <li><a href="#">Prescription</a></li>
-      <li><a href="#">Appointments</a></li>
+      <li><a id="book-appointment">Appointments</a></li>
     </ul>
   </div>
   
@@ -275,6 +275,12 @@ $(document).ready(async function() {
     modal.hide();
   });
 });
+document.getElementById('book-appointment').addEventListener('click', function() {
+    window.location.href = `patient-appointment.html?patientId=${patientId}`;
+  });
+  document.getElementById('patient-dashboard').addEventListener('click', function() {
+    window.location.href = `patient-dashboard.html?patientId=${patientId}`;
+  });
 </script>
 
 </body>
