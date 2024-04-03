@@ -80,7 +80,7 @@ if(but!=null){
           };
           console.log(formData);
           
-        const response = await fetch('http://localhost:5005/newpatient', {
+        const response = await fetch('http://localhost:5000/newpatient', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ if(but!=null){
   
     try{
       if(page==='Patient'){
-        const response = await fetch('http://localhost:5005/loginp', {
+        const response = await fetch('http://localhost:5000/loginp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ if(but!=null){
       formData=vardata.patient.formatted_dob;
       }
       else if(page==='Doctor'){
-        const response = await fetch('http://localhost:5005/logind', {
+        const response = await fetch('http://localhost:5000/logind', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

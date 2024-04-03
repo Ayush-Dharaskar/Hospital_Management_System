@@ -74,7 +74,7 @@
 
 <script>
   async function fetchPatientDetails(pid) {
-    const response = await fetch('http://localhost:5005/patientextract', {
+    const response = await fetch('http://localhost:5000/patientextract', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

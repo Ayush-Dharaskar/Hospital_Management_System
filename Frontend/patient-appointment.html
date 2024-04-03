@@ -192,7 +192,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
 $(document).ready(async function() {
-  const response = await fetch('http://localhost:5005/deptextract', {
+  const response = await fetch('http://localhost:5000/deptextract', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ $(document).ready(async function() {
     deptselect.appendChild(option);
   });
   document.getElementById('department').addEventListener('change', async function() {
-    const response = await fetch('http://localhost:5005/doctor_from_department', {
+    const response = await fetch('http://localhost:5000/doctor_from_department', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -257,7 +257,7 @@ $(document).ready(async function() {
   const patientId = urlParams.get('patientId');
   $('#appointment-form').submit(async function(event) {
     event.preventDefault();
-    const response = await fetch('http://localhost:5005/reqappointment', {
+    const response = await fetch('http://localhost:5000/reqappointment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
