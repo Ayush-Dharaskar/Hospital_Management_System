@@ -115,11 +115,16 @@ appointments.forEach(element => {
   if(element.appoint_time===null){
     element.appoint_time='Not Assigned';
   }
-  li.innerHTML = '<b>Date: </b>' + element.to_char + '&nbsp&nbsp' +
+  if(element.status==='Done'){
+    // Remove the 'continue' statement
+  }
+  else{
+    li.innerHTML = '<b>Date: </b>' + element.to_char + '&nbsp&nbsp' +
                ' <b>Status:</b> ' + element.status + '&nbsp&nbsp' +
                ' <b>Doctor:</b> ' + element.doctor_name + '&nbsp&nbsp' +
                ' <b>Time:</b> ' + element.appoint_time + '&nbsp&nbsp'+'<b>Reason:</b>'+element.reason;
   appoint.appendChild(li);
+  }
 });
           })
 $(document).ready(async function() {
