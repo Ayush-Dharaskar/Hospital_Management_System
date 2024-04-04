@@ -1,196 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointments</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-  /* Style for the modal */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    position: relative;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointments</title>
+    <link rel="stylesheet" href="styles.css" />
+    </head>
+  <body>
+    <section id="header">
+      <a href="index.html"><img src="img/logo.avif" class="logo" alt="" /></a>
+      <div id="name">
+        <h2>ASA Hospital</h2>
+      </div>
 
-<div class="container">
-  <!-- Drawer Menu -->
-  <div class="drawer">
-    <ul>
-      <li><a id="patient-dashboard">Dashboard</a></li>
-      <li><a href="index.html">Medical Records</a></li>
-      <li><a href="#">Prescription</a></li>
-      <li><a id="book-appointment">Appointments</a></li>
-    </ul>
-  </div>
-  
-  <!-- Main Content -->
-  <div class="main-content">
-    <h1>Appointments</h1>
-    <div class="appointment-list">
-      <h2>List of Appointments</h2>
-      <ul id="appointments-list">
-        <!-- Appointments will be dynamically inserted here -->
-      </ul>
+      <div>
+        <ul id="navbar">
+          <li><a  href="index.html">Home</a></li>
+          <li><a  class="active" href="patient-enquiry.html">Patient</a></li>
+          <li><a href="doctor-login.html">Doctor</a></li>
+          <li><a href="admin-login.html">Admin</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="p-container">
+      <!-- Drawer Menu -->
+      <div class="drawer">
+        <ul>
+          <li>
+            <a id="patient-dashboard">Dashboard</a>
+          </li>
+          <li><a id="medical-rec">Medical Records</a></li>
+          <li><a href="#" data-page="prescription">Prescription</a></li>
+          <li>
+            <a href="#" class="active" data-page="appointments">Appointments</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+    <div class="a-main-content">
+      <h1 class="page-title">Appointments</h1>
+      <div class="appointment-list">
+        <h2 class="section-title">List of Appointments</h2>
+        <ul id="appointments-list" class="appointments-list beautiful-list">
+          <!-- Appointments will be dynamically inserted here -->
+        </ul>
+      </div>
+      <button id="open-appointment-dialog" class="appointment-button">Book Appointment</button>
     </div>
-    <button id="open-appointment-dialog">Book Appointment</button>
-  </div>
-</div>
 
-<!-- Appointment Dialog -->
-<div id="appointment-dialog" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Book Appointment</h2>
-    <form id="appointment-form">
-      <div class="form-group">
-        <label for="department">Department:(Optional)</label>
-        <select id="department" name="department" required>
-          <!-- Add more options as needed -->
-        </select>
+    <!-- Appointment Dialog -->
+    <div id="appointment-dialog" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Book Appointment</h2>
+        <form id="appointment-form">
+          <div class="form-group">
+            <label for="department">Department:(Optional)</label>
+            <select id="department" name="department" required>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="doctor">Doctor Name:(Optional)</label>
+            <select id="doctor" name="doctor" required>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appointment-date">Date:</label>
+            <input
+              type="date"
+              id="appointment-date"
+              name="appointment-date"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="concern">Concern:</label>
+            <textarea id="concern" name="concern" rows="4" required></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="doctor">Doctor Name:(Optional)</label>
-        <select id="doctor" name="doctor" required>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="appointment-date">Date:</label>
-        <input type="date" id="appointment-date" name="appointment-date" required>
-      </div>
-      <div class="form-group">
-        <label for="concern">Concern:</label>
-        <textarea id="concern" name="concern" rows="4" required></textarea>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-</div>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointments</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-  /* Style for the modal */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    position: relative;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-</style>
-</head>
-<body>
-
-<div class="container">
-  <!-- Drawer Menu -->
-  <div class="drawer">
-    <ul>
-      <li><a href="patient-dashboard.html">Dashboard</a></li>
-      <li><a href="index.html">Medical Records</a></li>
-      <li><a href="#">Prescription</a></li>
-      <li><a href="#">Appointments</a></li>
-    </ul>
-  </div>
-  
-  <!-- Main Content -->
-  <div class="main-content">
-    <h1>Appointments</h1>
-    <div class="appointment-list">
-      <h2>List of Appointments</h2>
-      <ul id="appointments-list">
-        <!-- Appointments will be dynamically inserted here -->
-      </ul>
     </div>
-    <button id="open-appointment-dialog">Book Appointment</button>
-  </div>
-</div>
 
-<!-- Appointment Dialog -->
-<div id="appointment-dialog" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Book Appointment</h2>
-    <form id="appointment-form">
-      <div class="form-group">
-        <label for="department">Department:(optional)</label>
-        <select id="department" name="department" required>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="doctor">Doctor Name:</label>
-        <select id="doctor" name="doctor" required>
-          <option value="Dr. Smith">Dr. Smith</option>
-          <option value="Dr. Johnson">Dr. Johnson</option>
-          <option value="Dr. Williams">Dr. Williams</option>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="appointment-date">Date:</label>
-        <input type="date" id="appointment-date" name="appointment-date" required>
-      </div>
-      <div class="form-group">
-        <label for="concern">Concern:</label>
-        <textarea id="concern" name="concern" rows="4" required></textarea>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-</div>
+      
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script>
+          $(document).ready(async function(){
+            const urlParams = new URLSearchParams(window.location.search);
+  const patientId = urlParams.get('patientId');
+            const resp = await fetch('http://localhost:5000/patientappointments', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ patient: patientId })
+});
+
+const data1 = await resp.json();
+console.log(data1);
+// Corrected assignment statement
+const appointments = data1.name;
+
+var appoint = document.getElementById('appointments-list');
+appoint.innerHTML = ''; // Clear existing list before adding new appointments
+
+appointments.forEach(element => {
+  var li = document.createElement('li');
+  if(element.appoint_time===null){
+    element.appoint_time='Not Assigned';
+  }
+  li.innerHTML = '<b>Date: </b>' + element.to_char + '&nbsp&nbsp' +
+               ' <b>Status:</b> ' + element.status + '&nbsp&nbsp' +
+               ' <b>Doctor:</b> ' + element.doctor_name + '&nbsp&nbsp' +
+               ' <b>Time:</b> ' + element.appoint_time + '&nbsp&nbsp'+'<b>Reason:</b>'+element.reason;
+  appoint.appendChild(li);
+});
+          })
 $(document).ready(async function() {
   const response = await fetch('http://localhost:5000/deptextract', {
     method: 'POST',
@@ -255,6 +186,7 @@ $(document).ready(async function() {
   });
   const urlParams = new URLSearchParams(window.location.search);
   const patientId = urlParams.get('patientId');
+ 
   $('#appointment-form').submit(async function(event) {
     event.preventDefault();
     const response = await fetch('http://localhost:5000/reqappointment', {
@@ -275,16 +207,26 @@ $(document).ready(async function() {
     modal.hide();
   });
 });
-document.getElementById('book-appointment').addEventListener('click', function() {
+const urlParams1 = new URLSearchParams(window.location.search);
+$(document).ready(function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const patientId = urlParams.get('patientId');
+
+  $('#book-appointment').click(function() {
     window.location.href = `patient-appointment.html?patientId=${patientId}`;
   });
-  document.getElementById('patient-dashboard').addEventListener('click', function() {
+  $('#medical-rec').click(function() {
+    window.location.href = `medical-records.html?patientId=${patientId}`;
+  });
+
+  $('#patient-dashboard').click(function() {
     window.location.href = `patient-dashboard.html?patientId=${patientId}`;
   });
-</script>
 
-</body>
-</html> 
+  // Add your existing JavaScript code for modal functionality here
+});
 
-</body>
-</html> 
+          
+        </script>
+      </body>
+</html>

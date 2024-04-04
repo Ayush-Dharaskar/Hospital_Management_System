@@ -430,31 +430,39 @@ body {
   padding: 0;
 }
 
-.container {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.p-container {
   display: flex;
-  width: 100vw;
-  height: 100vh;
 }
 
 .drawer {
   width: 200px;
-  background-color: #f0f0f0;
+  background-color: #f4f4f4;
   padding: 20px;
 }
 
 .drawer ul {
-  list-style: none;
-  margin: 0;
+  list-style-type: none;
   padding: 0;
 }
 
-.drawer li {
+.drawer ul li {
   margin-bottom: 10px;
+  padding: 8px;
 }
 
-.drawer a {
+.drawer ul li a {
   text-decoration: none;
   color: #333;
+  display: block;
+}
+
+.drawer ul li a.active {
+  color: #007bff;
   font-weight: bold;
 }
 
@@ -463,60 +471,214 @@ body {
   padding: 20px;
 }
 
+.main-content h1{
+  margin-left: 400px;
+}
+
 .patient-details {
-  background-color: #fff;
+  background-color: #cae5ee;
   padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.patient-details h2 {
-  margin-bottom: 15px;
-}
-
-.details-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
+.detail-row {
+  margin-left: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .detail {
-  margin-bottom: 10px;
+  flex: 1 1 45%;
+  margin-bottom: 15px;
 }
 
 .detail label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-size: 18px; /* Increase font size for labels */
 }
 
-.buttons-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.detail span {
+  font-size: 25px; /* Increase font size for spans */
 }
 
-.buttons-container button {
-  padding: 10px 20px;
-  border: none;
+.patient-details h2 {
+  margin-top: 15px;
+}
+
+/* Styles for buttons */
+/* Styles for buttons by ID */
+#calculate-bmi,
+#book-appointment {
+  padding: 12px 24px; /* Increase padding for larger buttons */
+  background-color: #007bff;
+  color: #fff;
+  border: 2px solid #007bff; /* Add border for better visibility */
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  font-size: 16px; /* Increase font size for better readability */
+  margin-right: 35px;
 }
 
-#calculate-bmi {
-  background-color: #4CAF50;
-  color: white;
+#calculate-bmi:hover,
+#book-appointment:hover {
+  background-color: #0056b3;
+  border-color: #0056b3; /* Change border color on hover */
 }
 
-#book-appointment {
-  background-color: #3f51b5;
-  color: white;
+#calculate-bmi:active,
+#book-appointment:active {
+  background-color: #0056b3;
+  border-color: #0056b3; /* Change border color when active */
+  transform: translateY(1px);
 }
-
 
 .modal {
   display: none; /* Initially hide the modal */
   position: fixed; /* Ensures it stays fixed on the screen */
   z-index: 1; /* Layer it on top of other elements */
   /* Add other styles for size, padding, background, etc. */
+}
+
+.page-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 35px;
+  margin-left: 420px;
+}
+
+.appointment-list {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 1100px;
+  height: 420px;
+  margin-left: 10px;
+  background-color: #cae5ee;
+}
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.appointments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.appointments-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.appointments-list li:last-child {
+  border-bottom: none;
+}
+
+.appointment-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 70px;
+  width: 1000px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.appointment-button:hover {
+  background-color: #0056b3;
+}
+
+.a-main-content{
+  margin-top: 20px;
+  padding: 20px;
+  height: 2000px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+
+/* styles for appointment list */
+
+.beautiful-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.beautiful-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.beautiful-list li:hover {
+  background-color: #e5e5e5;
+}
+
+.beautiful-list .appointment-details {
+  margin-left: 10px;
+}
+
+.beautiful-list .appointment-details h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.beautiful-list .appointment-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+#textButton {
+  background: none;
+  border: none;
+  color: inherit; /* Inherit the color from the parent */
+  cursor: pointer;
+  text-decoration: underline; /* Optional: Add underline to mimic a link */
 }
