@@ -8,12 +8,20 @@
     <style>
         /* Hide child lists by default */
         ul ul {
-            display: none;
-        }
-        /* Show child list on hover */
-        ul li:hover > ul {
-            display: block;
-        }
+    display: none;
+}
+
+.pres-id, .pres-date {
+    display: inline;
+}
+
+.pres-id:hover, .pres-date:hover {
+    display: block;
+}
+
+.pres-id:hover + .pres-date {
+    display: block;
+}
     </style>
   </head>
   <body>
@@ -166,8 +174,9 @@
             });
         
             idMap.forEach((data, pres_id) => {
+                const totalCost = data.reduce((acc, item) => parseInt(acc) + parseInt(item.cost), 0);
                 const parentLi = document.createElement('li');
-                parentLi.innerHTML = `<span class="pres-id">Prescription Id:${pres_id}<br>Date:${data[0].pres_date}</span>`;
+                parentLi.innerHTML = `<span class="pres-id">Prescription Id: ${pres_id}  </span>&nbsp<span class="pres-date">Date: ${data[0].pres_date}</span>&nbsp<span class="total-cost">Total Cost: ${totalCost}</span>`;
         
                 const childUl = document.createElement('ul');
                 data.forEach(item => {
