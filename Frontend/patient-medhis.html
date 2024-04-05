@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Appointments</title>
+    <title>History</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -14,11 +14,9 @@
       </div>
 
       <div>
-        <div>
-          <ul id="navbar">
-            <li><a href="index.html">Logout</a></li>
-          </ul>
-        </div>
+        <ul id="navbar">
+          <li><a href="index.html">Logout</a></li>
+        </ul>
       </div>
     </section>
 
@@ -119,202 +117,57 @@
     <!-- Main Content -->
 
     <div class="main-content">
-      <p class="ap-title">Appointments</p>
+      <p class="ap-title"></p>
       <div class="appointment-list">
-        <h2>List of Appointments</h2>
+        <h2>Previous History</h2>
         <ul id="appointments-list" class="appointments-list beautiful-list">
           <!-- Appointments will be dynamically inserted here -->
         </ul>
       </div>
-      <button id="open-appointment-dialog" class="appointment-button">
-        Book Appointment
-      </button>
     </div>
 
-    <!-- Appointment Dialog -->
-    <div id="appointment-dialog" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Book Appointment</h2>
-        <form id="appointment-form">
-          <div class="form-group">
-            <label for="department">Department:(Optional)</label>
-            <select id="department" name="department" required>
-              <!-- Add more options as needed -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="doctor">Doctor Name:(Optional)</label>
-            <select id="doctor" name="doctor" required>
-              <!-- Add more options as needed -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="appointment-date">Date:</label>
-            <input
-              type="date"
-              id="appointment-date"
-              name="appointment-date"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="concern">Concern:</label>
-            <textarea id="concern" name="concern" rows="4" required></textarea>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
+  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-      $(document).ready(async function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const patientId = urlParams.get("patientId");
-        const resp = await fetch("http://localhost:5000/patientappointments", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ patient: patientId }),
-        });
+       $(document).ready(async function(){
+            const urlParams = new URLSearchParams(window.location.search);
+  const patientId = urlParams.get('patientId');
+            const resp = await fetch('http://localhost:5000/patientmedhis', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ patient: patientId })
+});
 
-        const data1 = await resp.json();
-        console.log(data1);
-        // Corrected assignment statement
-        const appointments = data1.name;
+const data1 = await resp.json();
+console.log(data1);
+// Corrected assignment statement
+const appointments = data1.name;
 
-        var appoint = document.getElementById("appointments-list");
-        appoint.innerHTML = ""; // Clear existing list before adding new appointments
+var appoint = document.getElementById('appointments-list');
+appoint.innerHTML = ''; // Clear existing list before adding new appointments
 
-        appointments.forEach((element) => {
-          var li = document.createElement("li");
-          if (element.appoint_time === null) {
-            element.appoint_time = "Not Assigned";
-          }
-          if (element.status === "Done") {
-            // Remove the 'continue' statement
-          } else {
-            li.innerHTML =
-              "<b>Date: </b>" +
-              element.to_char +
-              "&nbsp&nbsp" +
-              " <b>Status:</b> " +
-              element.status +
-              "&nbsp&nbsp" +
-              " <b>Doctor:</b> " +
-              element.doctor_name +
-              "&nbsp&nbsp" +
-              " <b>Time:</b> " +
-              element.appoint_time +
-              "&nbsp&nbsp" +
-              "<b>Reason:</b>" +
-              element.reason;
-            appoint.appendChild(li);
-          }
-        });
-      });
-      $(document).ready(async function () {
-        const response = await fetch("http://localhost:5000/deptextract", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(),
-        });
-        const data = await response.json();
-
-        var deptselect = document.getElementById("department");
-        deptselect.innerHTML = "";
-        var option1 = document.createElement("option");
-        option1.value = 0;
-        option1.text = "Select Department";
-        deptselect.appendChild(option1);
-        data.department.forEach((element) => {
-          var option = document.createElement("option");
-          option.value = element.dept_id;
-          option.text = element.dept_name;
-          deptselect.appendChild(option);
-        });
-        document
-          .getElementById("department")
-          .addEventListener("change", async function () {
-            const response = await fetch(
-              "http://localhost:5000/doctor_from_department",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  dept: document.getElementById("department").value,
-                }),
-              }
-            );
-            const data = await response.json();
-            console.log(data.name);
-            var doctorselect = document.getElementById("doctor");
-            doctorselect.innerHTML = "";
-            var option1 = document.createElement("option");
-            option1.value = 0;
-            option1.text = "Select Doctor";
-            doctorselect.appendChild(option1);
-            data.name.forEach((element) => {
-              var option = document.createElement("option");
-              option.value = element.doctor_id;
-              option.text = element.doctor_name;
-              doctorselect.appendChild(option);
-            });
-          });
-        var modal = $("#appointment-dialog");
-        var btn = $("#open-appointment-dialog");
-        var closeSpan = $(".close");
-
-        btn.click(function () {
-          modal.show();
-        });
-
-        closeSpan.click(function () {
-          modal.hide();
-        });
-
-        $(window).click(function (event) {
-          if (event.target.id === "appointment-dialog") {
-            modal.hide();
-          }
-        });
-        const urlParams = new URLSearchParams(window.location.search);
-        const patientId = urlParams.get("patientId");
-
-        $("#appointment-form").submit(async function (event) {
-          event.preventDefault();
-          const response = await fetch("http://localhost:5000/reqappointment", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              pid: patientId,
-              dept: document.getElementById("department").value,
-              doc: document.getElementById("doctor").value,
-              date: document.getElementById("appointment-date").value,
-              concern: document.getElementById("concern").value,
-            }),
-          });
-          var department = $("#department").val();
-          var doctor = $("#doctor").val();
-          var date = $("#appointment-date").val();
-          var concern = $("#concern").val();
-          console.log("Department:", department);
-          console.log("Doctor:", doctor);
-          console.log("Appointment Date:", date);
-          console.log("Concern:", concern);
-          modal.hide();
-        });
-      });
-      const urlParams1 = new URLSearchParams(window.location.search);
-      function redirectToAppointment() {
+appointments.forEach(element => {
+  var li = document.createElement('li');
+  if(element.appoint_time===null){
+    element.appoint_time='Not Assigned';
+  }
+  if(element.status==='Done'){
+    // Remove the 'continue' statement
+  }
+  else{
+    li.innerHTML = '<b>Doctor: </b>' + element.doctor_name + '&nbsp&nbsp&nbsp' +
+               ' <b>Date:</b> ' + element.rec_date + '&nbsp&nbsp&nbsp' +
+               ' <b>Diagnosis:</b> ' + element.diagnosis + '&nbsp&nbsp&nbsp' + 
+               ' <b>Prescription Id:</b>' + element.rec_id
+  appoint.appendChild(li);
+  }
+});
+          })
+const urlParams1 = new URLSearchParams(window.location.search);
+function redirectToAppointment() {
   const urlParams = new URLSearchParams(window.location.search);
   const patientId = urlParams.get("patientId");
   window.location.href = `patient-appointment.html?patientId=${patientId}`;
@@ -334,6 +187,7 @@ function redirectTodashboard() {
   const patientId = urlParams.get("patientId");
   window.location.href = `patient-dashboard.html?patientId=${patientId}`;
 }
+
 
     </script>
   </body>

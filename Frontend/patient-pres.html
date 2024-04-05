@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prescription</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Hide child lists by default */
+        ul ul {
+            display: none;
+        }
+        /* Show child list on hover */
+        ul li:hover > ul {
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+    <section id="header">
+      <a href="index.html"><img src="img/logo.avif" class="logo" alt="" /></a>
+      <div id="name">
+        <h2>ASA Hospital</h2>
+      </div>
+
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="navbar2">
+      <!-- <nav class="navbar2"> -->
+      <ul class="navbar-nav">
+        <li class="logo2">
+          <a href="#" class="nav-link">
+            <span class="link-text logo-text">ASA</span>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fad"
+              data-icon="angle-double-right"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+            >
+              <g class="fa-group">
+                <path
+                  fill="currentColor"
+                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                  class="fa-secondary"
+                ></path>
+                <path
+                  fill="currentColor"
+                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                  class="fa-primary"
+                ></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a  href="#"  data-page="dashboard" onclick="redirectTodashboard()" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+              />
+            </svg>
+            <span class="link-text">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#"  data-page="medical-records" onclick="redirecttomedhis()" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z"
+              />
+            </svg>
+            <span class="link-text">Medical Records</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="#"  data-page="prescription" onclick="redirectTopres()" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M0 32C0 14.3 14.3 0 32 0H352c17.7 0 32 14.3 32 32V64c0 17.7-14.3 32-32 32H32C14.3 96 0 81.7 0 64V32zm32 96H352V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zM160 240v48H112c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V352h48c8.8 0 16-7.2 16-16V304c0-8.8-7.2-16-16-16H224V240c0-8.8-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z"
+              />
+            </svg>
+            <span class="link-text">Prescription</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a  href="#" data-page="appointments" onclick="redirectToAppointment()" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+              />
+            </svg>
+            <span class="link-text">Appointments</span>
+          </a>
+        </li>
+
+        <li class="nav-item" id="themeButton">
+          <a href="#" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
+              />
+            </svg>
+            <span class="link-text">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Main Content -->
+
+    <div class="main-content">
+      <p class="ap-title"></p>
+      <div class="appointment-list">
+        <h2>Prescriptions</h2>
+        <ul id="pres-list" class="appointments-list beautiful-list">
+          <!-- Appointments will be dynamically inserted here -->
+        </ul>
+      </div>
+    </div>
+
+  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(async function(){
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get('patientId');
+            const resp = await fetch('http://localhost:5000/patientpres', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ patient: patientId })
+            });
+        
+            const data1 = await resp.json();
+            console.log(data1);
+            const appointments = data1.name;
+            console.log(appointments);
+            var appoint = document.getElementById('pres-list');
+            appoint.innerHTML = ''; // Clear existing list before adding new appointments
+            const idMap = new Map();
+            appointments.forEach(item => {
+                if (!idMap.has(item.pres_id)) {
+                    idMap.set(item.pres_id, []);
+                }
+                idMap.get(item.pres_id).push(item);
+            });
+        
+            idMap.forEach((data, pres_id) => {
+                const parentLi = document.createElement('li');
+                parentLi.innerHTML = `<span class="pres-id">Prescription Id:${pres_id}<br>Date:${data[0].pres_date}</span>`;
+        
+                const childUl = document.createElement('ul');
+                data.forEach(item => {
+                    const childLi = document.createElement('li');
+                    childLi.textContent = `Medicine: ${item.medicine}, Cost: ${item.cost}, Status: ${item.status}, Quantity: ${item.quantity}`;
+                    childUl.appendChild(childLi);
+                });
+        
+                parentLi.appendChild(childUl);
+                appoint.appendChild(parentLi);
+        
+                // Add hover event listener to show/hide child list
+                parentLi.addEventListener('mouseover', () => {
+                    childUl.style.display = 'block';
+                });
+                parentLi.addEventListener('mouseout', () => {
+                    childUl.style.display = 'none';
+                });
+            });
+        })
+        
+        function redirectToAppointment() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get("patientId");
+            window.location.href = `patient-appointment.html?patientId=${patientId}`;
+        }
+        
+        function redirecttomedhis() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get("patientId");
+            window.location.href = `patient-medhis.html?patientId=${patientId}`;
+        }
+        
+        function redirectTopres() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get("patientId");
+            window.location.href = `patient-pres.html?patientId=${patientId}`;
+        }
+        
+        function redirectTodashboard() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get("patientId");
+            window.location.href = `patient-dashboard.html?patientId=${patientId}`;
+        }
+        </script>
+  </body>
+</html>
