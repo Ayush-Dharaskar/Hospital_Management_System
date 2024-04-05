@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
 var but = document.getElementById('newpa');
 if(but!=null){
   but.onclick = async function(event) {
+    alert('Registration Successful\n'+'PatientID:'+randd+' \nPassword:DOB'+'\nGo to login page and login');
     event.preventDefault(); 
     var formData = {
             firstName: document.getElementById("first-name").value,
@@ -76,7 +77,10 @@ if(but!=null){
             mobileNumber: document.getElementById("mobile-number").value,
             gender: document.getElementById("gender").value,
             dob: document.getElementById("dob").value,
-            bloodGroup: document.getElementById("blood-group").value
+            bloodGroup: document.getElementById("blood-group").value,
+            height:document.getElementById("height").value,
+            weight:document.getElementById("weight").value,
+
           };
           console.log(formData);
           
@@ -87,6 +91,13 @@ if(but!=null){
       },
       body: JSON.stringify({ formData,randd })
     });
+      document.getElementById("first-name").value=null;
+      document.getElementById("last-name").value=null;
+       document.getElementById("email").value=null;
+      document.getElementById("mobile-number").value=null;
+      document.getElementById("gender").value=null;
+     document.getElementById("dob").value=null;
+      document.getElementById("blood-group").value=null;
   }
 }
 // NEW PATIENT FORM

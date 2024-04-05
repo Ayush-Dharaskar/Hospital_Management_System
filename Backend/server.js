@@ -147,13 +147,17 @@ app.post('/newpatient', async (req, res) => {
     gender = text.gender;
     add ='manipal'
     age =17
-    height =160
-    weight = 60
+    height =text.height;
+    weight = text.weight;
     blood = text.bloodGroup;
     dob = text.dob
+    console.log(height+' '+weight);
     console.log(text);
     console.log(pid);
     console.log(pname);
+    const agequery='select calculate_age(($1)::date)';
+    const ageresult=await pool.query(agequery,[dob]);
+    age=ageresult.rows[0].calculate_age;
     const patientQuery = 'insert into patient values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)';
 
     const patientResult = await pool.query(patientQuery, [pid,pname,mob,add,gender,age,height,weight,blood,dob]);
