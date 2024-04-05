@@ -251,9 +251,26 @@ app.post('/patientpres', async (req, res) => {
     
     const queryText = 'select pres_id, medicine,patient_id,TO_CHAR(pres_date, \'DD/MM/YYYY\')as pres_date,cost,status,quantity from prescription where patient_id = $1 order by pres_id';
     const result = await pool.query(queryText,[text]);
-    console.log(result.rows);
+
     
-    res.json({name: result.rows});
+
+    const queryText2= 'select pres_id,sum(cost) from prescription group by pres_id';
+    const pres_cost = await pool.query(queryText2)
+
+    console.log(pres_cost.rows);
+    result.rows.forEach(row => {
+      // Find the corresponding pres_id in pres_cost.rows
+      const matchingPresCostRow = pres_cost.rows.find(presCostRow => presCostRow.pres_id === row.pres_id);
+      
+      // If a corresponding row is found, add the total_cost to the current row
+      if (matchingPresCostRow) {
+          row.total_cost = matchingPresCostRow.sum;
+      }
+  });
+  
+  console.log(result.rows);
+
+  res.json({name: result.rows});
 
   } catch (error) {
     console.error('Error:', error);

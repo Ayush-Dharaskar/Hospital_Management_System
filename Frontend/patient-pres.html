@@ -174,9 +174,8 @@
             });
         
             idMap.forEach((data, pres_id) => {
-                const totalCost = data.reduce((acc, item) => parseInt(acc) + parseInt(item.cost), 0);
                 const parentLi = document.createElement('li');
-                parentLi.innerHTML = `<span class="pres-id">Prescription Id: ${pres_id}  </span>&nbsp<span class="pres-date">Date: ${data[0].pres_date}</span>&nbsp<span class="total-cost">Total Cost: ${totalCost}</span>`;
+                parentLi.innerHTML = `<span class="pres-id">Prescription Id: ${pres_id}  </span>&nbsp<span class="pres-date">Date: ${data[0].pres_date}</span>&nbsp<span class="total-cost">Total Cost: ${data[0].total_cost}</span>`;
         
                 const childUl = document.createElement('ul');
                 data.forEach(item => {

@@ -733,7 +733,7 @@ padding: 1rem;
 position: fixed;
 background-color: var(--bg-primary);
 transition: width 600ms ease;
-overflow: scroll;
+/* overflow: scroll; */
 margin-top: 15px;
 }
 
