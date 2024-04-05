@@ -148,7 +148,7 @@ app.post('/newpatient', async (req, res) => {
     add ='manipal'
     age =17
     height =160
-    weight = 69
+    weight = 60
     blood = text.bloodGroup;
     dob = text.dob
     console.log(text);
