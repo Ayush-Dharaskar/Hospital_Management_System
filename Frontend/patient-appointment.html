@@ -217,13 +217,26 @@
           if (element.status === "Done") {
             // Remove the 'continue' statement
           } else {
+            var statusClass = "";
+            if (element.status === "accepted") {
+              statusClass = "status-accepted";
+            } else if (element.status === "rejected") {
+              statusClass = "status-rejected";
+            } else {
+              statusClass = "status-pending";
+            }
+
+            li.className = "beautiful-list-item-" + statusClass;
+
             li.innerHTML =
-              "<b>Date: </b>" +
+              "<div class='appointment-details'><b>Date: </b>" +
               element.to_char +
               "&nbsp&nbsp" +
-              " <b>Status:</b> " +
+              " <b>Status:</b> <span class='" +
+              statusClass +
+              "'>" +
               element.status +
-              "&nbsp&nbsp" +
+              "</span>&nbsp&nbsp" +
               " <b>Doctor:</b> " +
               element.doctor_name +
               "&nbsp&nbsp" +
@@ -232,6 +245,7 @@
               "&nbsp&nbsp" +
               "<b>Reason:</b>" +
               element.reason;
+            +"</div>";
             appoint.appendChild(li);
           }
         });

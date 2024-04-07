@@ -343,6 +343,19 @@ body {
         margin-left: 300px;
         height: 450px;
         margin-top: 100px;
+        overflow-y: auto;
+        }
+
+        .appointment-list::-webkit-scrollbar {
+          width: 0.25rem;
+        }
+        
+        .appointment-list::-webkit-scrollbar-track {
+          background: #1e1e24;
+        }
+        
+        .appointment-list::-webkit-scrollbar-thumb {
+          background: #6649b8;
         }
 
         .appointment-list h2{
@@ -376,7 +389,7 @@ body {
         .appointment-button {
         margin-top: 10px;
         padding: 12px 24px;
-        background-color: #007bff;
+        background-color: #6649b8;
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -389,7 +402,7 @@ body {
         }
         
         .appointment-button:hover {
-        background-color: #0056b3;
+        background-color: #2F1771;
         }
         
         .a-main-content{
@@ -401,34 +414,127 @@ body {
           display: none; /* Initially hide the modal */
           position: fixed; /* Ensures it stays fixed on the screen */
           z-index: 1; /* Layer it on top of other elements */
-          /* Add other styles for size, padding, background, etc. */
-          }
-        .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
           height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
+          overflow: hidden; /* Enable scroll if needed */
           background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-          }
-          .modal-content {
+          
+        }
+        
+        .modal-content {
           background-color: #fefefe;
           margin: 15% auto;
           padding: 20px;
           border: 1px solid #888;
           width: 80%;
-          max-width: 400px;
-          position: relative;
-          }
-          .close {
+          max-width: 600px; /* Increased max-width for better readability */
+          border-radius: 10px; /* Added border radius */
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Added box shadow */
+        }
+
+        .modal-content h2{
+          text-align: center;
+          padding: 10px;
+        }
+        
+        .close {
           color: #aaa;
           float: right;
           font-size: 28px;
           font-weight: bold;
+          cursor: pointer; /* Added cursor pointer */
+        }
+        
+        .close:hover {
+          color: #000; /* Change color on hover */
+        }
+        
+        /* Added hover effect for modal content */
+        .modal-content:hover {
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Added transition for smoother effects */
+        .modal-content,
+        .close {
+          transition: 0.3s;
+        }
+        
+        /* Added styling for form elements */
+        .form-group {
+          margin-bottom: 20px;
+        }
+        
+        label {
+          display: block;
+          margin-bottom: 5px;
+        }
+        
+        input[type="date"],
+        textarea {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+        }
+        
+        button[type="submit"] {
+          padding: 12px 24px;
+          background-color: #6649b8;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          margin-left: 40%;
+          width: 150px;
+        }
+        
+        button[type="submit"]:hover {
+          background-color: #2F1771;
+        }
+        
+        /* Added styling for the select dropdown */
+        select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #fff;
+          appearance: none; /* Remove default appearance */
+          -webkit-appearance: none; /* For older versions of Chrome and Safari */
+          -moz-appearance: none; /* For older versions of Firefox */
+        }
+        
+        /* Added arrow icon for select dropdown */
+        select::after {
+          content: '\25BC'; /* Unicode character for down arrow */
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          pointer-events: none; /* Ensure it doesn't interfere with the click */
+        }
+
+
+        select {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12l-5-5-5 5h10z" clip-rule="evenodd"/></svg>'); /* Use SVG image as background */
+          background-repeat: no-repeat;
+          background-position: right 10px center; /* Position arrow icon */
+          background-size: 12px; /* Set size of the arrow icon */
+          padding-right: 25px; /* Adjust padding to make space for the arrow icon */
+        }
+        
+        /* Hide default arrow in Firefox */
+        @-moz-document url-prefix() {
+          select {
+            background-image: none;
           }
+        }
+        
         
         
         
@@ -443,7 +549,7 @@ body {
         gap: 10px;
         }
         
-        .beautiful-list li {
+        .beautiful-list .beautiful-list-item {
         display: flex;
         align-items: center;
         padding: 10px;
@@ -452,8 +558,8 @@ body {
         transition: background-color 0.3s ease;
         }
         
-        .beautiful-list li:hover {
-        background-color: #e5e5e5;
+        .beautiful-list .beautiful-list-item-status-pending:hover {
+        background-color: rgb(216, 216, 216);
         }
         
         .beautiful-list .appointment-details {
@@ -479,3 +585,24 @@ body {
         cursor: pointer;
         text-decoration: underline; /* Optional: Add underline to mimic a link */
         }
+
+
+      .beautiful-list-item-status-accepted {
+        background-color: rgb(1, 184, 1);
+      }
+      
+      .beautiful-list-item-status-rejected {
+          color: rgb(252, 103, 103);
+      }
+      
+      .beautiful-list-item-status-pending:hover {
+          color: #333; /* Change to your desired hover color */
+      }
+      
+      .beautiful-list-item-status-accepted:hover {
+          background-color: rgb(28, 146, 28); /* Change to your desired hover color */
+      }
+      
+      .beautiful-list-item-status-rejected:hover {
+          color: rgb(212, 8, 8); /* Change to your desired hover color */
+      }
