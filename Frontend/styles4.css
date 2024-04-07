@@ -1,0 +1,491 @@
+ul ul {
+    display: none;
+}
+
+.pres-id, .pres-date {
+    display: inline;
+}
+
+.pres-id:hover, .pres-date:hover {
+    display: block;
+}
+
+.pres-id:hover + .pres-date {
+    display: block;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-image: url('img/a-dark-atmospheric-hospital-website-background-ima-QibvOxOsTQaOI5cIU4OSVg-kgfHMbIaSWqOoTgZlX6M8w-.jpeg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-size: cover; /* Ensure the background image covers the entire section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+    }
+
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+     /* Prevent the background image from repeating */
+    padding-top: 100px;
+    }
+    
+    .main-content h1 {
+    margin-left: 600px;
+    margin-bottom: 40px;
+    color: white;
+    
+    }
+    
+    .patient-details {
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    height: 400px;
+    max-width: 900px;
+    margin-left: 250px;
+    }
+    
+    .detail-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
+    
+    .detail {
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 20px;
+    }
+    
+    .detail label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    }
+    
+    .detail span {
+    font-size: 20px;
+    color: #555;
+    }
+    
+    .patient-details h2 {
+    margin-top: 15px;
+    margin-bottom: 60px;
+    margin-left: 350px;
+    }
+    
+    .calculate-bmi-button {
+    margin-top: 20px; /* Adjust the margin-top to shift the button below */
+    font-size: 20px; /* Increase font size for the button */
+    padding: 10px 20px; /* Adjust padding to make the button bigger */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Add border radius for button */
+    cursor: pointer; /* Add pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Add transition effect */
+    }
+    
+    .calculate-bmi-button:hover {
+    background-color: #0056b3; /* Change background color on hover */
+    }
+    
+    
+    /* Styles for buttons */
+    /* Styles for buttons by ID */
+    #calculate-bmi,
+    #book-appointment {
+    padding: 12px 24px; /* Increase padding for larger buttons */
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #007bff; /* Add border for better visibility */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    font-size: 16px; /* Increase font size for better readability */
+    margin-right: 35px;
+    }
+    
+    #calculate-bmi:hover,
+    #book-appointment:hover {
+    background-color: #0056b3;
+    border-color: #0056b3; /* Change border color on hover */
+    }
+    
+    #calculate-bmi:active,
+    #book-appointment:active {
+    background-color: #0056b3;
+    border-color: #0056b3; /* Change border color when active */
+    transform: translateY(1px);
+    }
+
+    :root {
+        font-size: 16px;
+        font-family: 'Open Sans';
+        --text-primary: #b6b6b6;
+        --text-secondary: #ececec;
+        --bg-primary: #23232e;
+        --bg-secondary: #141418;
+        --transition-speed: 600ms;
+      }
+      
+      body {
+        color: black;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body::-webkit-scrollbar {
+        width: 0.25rem;
+      }
+      
+      body::-webkit-scrollbar-track {
+        background: #1e1e24;
+      }
+      
+      body::-webkit-scrollbar-thumb {
+        background: #6649b8;
+      }
+      
+      main {
+        margin-left: 5rem;
+        padding: 1rem;
+      }
+      
+      .navbar2 {
+        position: fixed;
+        background-color: var(--bg-primary);
+        transition: width 600ms ease;
+        /* overflow: scroll; */
+      }
+      
+      .navbar-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+      }
+      
+      .nav-item {
+        width: 100%;
+      }
+      
+      .nav-item:last-child {
+        margin-top: auto;
+      }
+
+      #item1{
+        background-color: #6649b8;
+      }
+      
+      .nav-link {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        filter: grayscale(100%) opacity(0.7);
+        transition: var(--transition-speed);
+      }
+      
+      .nav-link:hover {
+        filter: grayscale(0%) opacity(1);
+        background: #6649b8;
+        color: var(--text-secondary);
+      }
+      
+      .link-text {
+        display: none;
+        margin-left: 1rem;
+      }
+      
+      .nav-link svg {
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 1.5rem;
+      }
+      
+      .fa-primary {
+        color: #ff7eee;
+      }
+      
+      .fa-secondary {
+        color: #df49a6;
+      }
+      
+      .fa-primary,
+      .fa-secondary {
+        transition: var(--transition-speed);
+      }
+      
+      .logo2 {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: var(--text-secondary);
+        background: var(--bg-secondary);
+        font-size: 1.5rem;
+        letter-spacing: 0.3ch;
+        width: 100%;
+      }
+      
+      .logo2 svg {
+        transform: rotate(0deg);
+        transition: var(--transition-speed);
+      }
+      
+      .logo-text
+      {
+        display: inline;
+        position: absolute;
+        left: -999px;
+        transition: var(--transition-speed);
+      }
+      
+      .navbar2:hover .logo2 svg {
+        transform: rotate(-180deg);
+      }
+      
+      /* Small screens */
+      @media only screen and (max-width: 600px) {
+        .navbar {
+          bottom: 0;
+          width: 100vw;
+          height: 5rem;
+        }
+      
+        .logo {
+          display: none;
+        }
+      
+        .navbar-nav {
+          flex-direction: row;
+        }
+      
+        .nav-link {
+          justify-content: center;
+        }
+      
+        main {
+          margin: 0;
+        }
+      }
+      
+      /* Large screens */
+      @media only screen and (min-width: 600px) {
+        .navbar2 {
+          top: 0;
+          width: 5rem;
+          height: 100vh;
+        }
+      
+        .navbar2:hover {
+          width: 16rem;
+        }
+      
+        .navbar2:hover .link-text {
+          display: inline;
+        }
+      
+        .navbar2:hover .logo2 svg
+        {
+          margin-left: 11rem;
+        }
+      
+        .navbar2:hover .logo-text
+        {
+          left: 0px;
+        }
+      }
+      
+      .dark {
+        --text-primary: #b6b6b6;
+        --text-secondary: #ececec;
+        --bg-primary: #23232e;
+        --bg-secondary: #141418;
+      }
+      
+      .light {
+        --text-primary: #1f1f1f;
+        --text-secondary: #000000;
+        --bg-primary: #ffffff;
+        --bg-secondary: #e4e4e4;
+      }
+      
+      .solar {
+        --text-primary: #576e75;
+        --text-secondary: #35535c;
+        --bg-primary: #fdf6e3;
+        --bg-secondary: #f5e5b8;
+      }
+      
+      .theme-icon {
+        display: none;
+      }
+      
+      .dark #darkIcon {
+        display: block;
+      }
+      
+      .light #lightIcon {
+        display: block;
+      }
+      
+      .solar #solarIcon {
+        display: block;
+      }
+
+      .appointment-list {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #f5f5f5;
+        margin-left: 300px;
+        height: 450px;
+        margin-top: 100px;
+        }
+
+        .appointment-list h2{
+            text-align: center;
+        }
+        
+        .ap-title{
+        color: rgb(255, 3, 3);
+        margin-left: 650px;
+        margin-top: -45px;
+        margin-bottom: 35px;
+        font-size: 28px;
+        font-weight: 800;
+        }
+        
+        .appointments-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 500px;
+        }
+        
+        .appointments-list li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        }
+        
+        .appointments-list li:last-child {
+        border-bottom: none;
+        }
+        
+        .appointment-button {
+        margin-top: 10px;
+        padding: 12px 24px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 430px;
+        width: 600px;
+        height: 50px;
+        font-size: 20px;
+        }
+        
+        .appointment-button:hover {
+        background-color: #0056b3;
+        }
+        
+        .a-main-content{
+        margin-top: 20px;
+        padding: 20px;
+        height: 2000px;
+        }
+        
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        position: relative;
+        }
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+        
+        
+        
+        /* styles for appointment list */
+        
+        .beautiful-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        }
+        
+        .beautiful-list li {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        }
+        
+        .beautiful-list li:hover {
+        background-color: #e5e5e5;
+        }
+        
+        .beautiful-list .appointment-details {
+        margin-left: 10px;
+        }
+        
+        .beautiful-list .appointment-details h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        }
+        
+        .beautiful-list .appointment-details p {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+        }
+        
+        #textButton {
+        background: none;
+        border: none;
+        color: inherit; /* Inherit the color from the parent */
+        cursor: pointer;
+        text-decoration: underline; /* Optional: Add underline to mimic a link */
+        }

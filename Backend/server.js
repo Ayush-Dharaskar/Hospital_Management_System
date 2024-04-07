@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 // Create an instance of Express
 const app = express();
-const port = 5000; // Choose a port for your server
+const port = 7878; // Choose a port for your server
 
 // Middleware setup
 app.use(bodyParser.json());

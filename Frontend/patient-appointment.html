@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Appointments</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles3.css" />
   </head>
   <body>
-    <section id="header">
+    <!-- <section id="header">
       <a href="index.html"><img src="img/logo.avif" class="logo" alt="" /></a>
       <div id="name">
         <h2>ASA Hospital</h2>
@@ -20,7 +20,7 @@
           </ul>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="navbar2">
       <!-- <nav class="navbar2"> -->
@@ -55,7 +55,12 @@
         </li>
 
         <li class="nav-item">
-          <a  href="#"  data-page="dashboard" onclick="redirectTodashboard()" class="nav-link">
+          <a
+            href="#"
+            data-page="dashboard"
+            onclick="redirectTodashboard()"
+            class="nav-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
               <path
@@ -67,7 +72,12 @@
         </li>
 
         <li class="nav-item">
-          <a href="#"  data-page="medical-records" onclick="redirecttomedhis()" class="nav-link">
+          <a
+            href="#"
+            data-page="medical-records"
+            onclick="redirecttomedhis()"
+            class="nav-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
               <path
@@ -79,7 +89,12 @@
         </li>
 
         <li class="nav-item">
-          <a href="#"  data-page="prescription" onclick="redirectTopres()" class="nav-link">
+          <a
+            href="#"
+            data-page="prescription"
+            onclick="redirectTopres()"
+            class="nav-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
               <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
               <path
@@ -90,8 +105,13 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a  href="#" data-page="appointments" onclick="redirectToAppointment()" class="nav-link">
+        <li class="nav-item" id="item2">
+          <a
+            href="#"
+            data-page="appointments"
+            onclick="redirectToAppointment()"
+            class="nav-link"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
               <path
@@ -103,16 +123,17 @@
         </li>
 
         <li class="nav-item" id="themeButton">
-          <a href="#" class="nav-link">
+          <a href="index.html" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
               <path
-                d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
               />
             </svg>
-            <span class="link-text">Settings</span>
+            <span class="link-text">Logout</span>
           </a>
         </li>
+        <!-- </ul> -->
       </ul>
     </section>
 
@@ -172,7 +193,7 @@
       $(document).ready(async function () {
         const urlParams = new URLSearchParams(window.location.search);
         const patientId = urlParams.get("patientId");
-        const resp = await fetch("http://localhost:5000/patientappointments", {
+        const resp = await fetch("http://localhost:7878/patientappointments", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -216,7 +237,7 @@
         });
       });
       $(document).ready(async function () {
-        const response = await fetch("http://localhost:5000/deptextract", {
+        const response = await fetch("http://localhost:7878/deptextract", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -241,7 +262,7 @@
           .getElementById("department")
           .addEventListener("change", async function () {
             const response = await fetch(
-              "http://localhost:5000/doctor_from_department",
+              "http://localhost:7878/doctor_from_department",
               {
                 method: "POST",
                 headers: {
@@ -289,7 +310,7 @@
 
         $("#appointment-form").submit(async function (event) {
           event.preventDefault();
-          const response = await fetch("http://localhost:5000/reqappointment", {
+          const response = await fetch("http://localhost:7878/reqappointment", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -315,26 +336,25 @@
       });
       const urlParams1 = new URLSearchParams(window.location.search);
       function redirectToAppointment() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const patientId = urlParams.get("patientId");
-  window.location.href = `patient-appointment.html?patientId=${patientId}`;
-}
-function redirecttomedhis() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const patientId = urlParams.get("patientId");
-  window.location.href = `patient-medhis.html?patientId=${patientId}`;
-}
-function redirectTopres() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const patientId = urlParams.get("patientId");
-  window.location.href = `patient-pres.html?patientId=${patientId}`;
-}
-function redirectTodashboard() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const patientId = urlParams.get("patientId");
-  window.location.href = `patient-dashboard.html?patientId=${patientId}`;
-}
-
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientId = urlParams.get("patientId");
+        window.location.href = `patient-appointment.html?patientId=${patientId}`;
+      }
+      function redirecttomedhis() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientId = urlParams.get("patientId");
+        window.location.href = `patient-medhis.html?patientId=${patientId}`;
+      }
+      function redirectTopres() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientId = urlParams.get("patientId");
+        window.location.href = `patient-pres.html?patientId=${patientId}`;
+      }
+      function redirectTodashboard() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientId = urlParams.get("patientId");
+        window.location.href = `patient-dashboard.html?patientId=${patientId}`;
+      }
     </script>
   </body>
 </html>

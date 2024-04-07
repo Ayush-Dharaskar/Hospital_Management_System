@@ -16,12 +16,21 @@ foreign key(pres_id) references prescription(pres_id)
   align-items: center;
   justify-content: space-between;
   padding: 20px 80px;
-  background: #aab1d4;
+  background: #000000;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
   z-index: 999;
   position: sticky;
   top: 0;
   left: 0;
+}
+
+.bg{
+  background-image: url('img/Untitled\ design-2.png');
+  background-position: center; 
+  background-size: cover; 
+  object-fit: contain;
+  height: 100%;
+/* overflow: hidden; */
 }
 
 .section-p1 {
@@ -50,17 +59,22 @@ margin-right: 450px;
   position: relative;
 }
 
+#name h2{
+  color: white;
+  margin-left: -30px;
+}
+
 #navbar li a{
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
-  color: #222;
+  color: white;
   transition: 0.3s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active{
-  color: #088178;
+  color: #6649b8;
 
 }
 
@@ -68,7 +82,7 @@ margin-right: 450px;
   content: "";
   width: 30%;
   height: 2px;
-  background: #088178;
+  background: #6649b8;
   position: absolute;
   bottom: -4px;
   left: 20px;
@@ -78,7 +92,7 @@ margin-right: 450px;
   content: "";
   width: 30%;
   height: 2px;
-  background: #088178;
+  background: #6649b8;
   position: absolute;
   bottom: -4px;
   left: 20px;
@@ -115,14 +129,15 @@ margin-bottom: 30px;
 .btn {
 display: inline-block;
 padding: 10px 20px;
-background-color: #007bff;
+background-color: #6649b8;
 color: #fff;
 text-decoration: none;
 border-radius: 5px;
+transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-background-color: #0056b3;
+background-color: #2F1771;
 }
 
 
@@ -337,10 +352,11 @@ padding: 40px 80px;
 }
 
 #sm-banner{
+background-color: #000000;
 display: flex;
 justify-content: space-between;
 flex-wrap: wrap;
-margin-bottom: 15px;
+/* margin-bottom: 15px; */
 }
 
 #sm-banner .banner-box{
@@ -380,11 +396,12 @@ padding-bottom: 15px;
 }
 
 #sm-banner .banner-box:hover button{
-background-color: #088178;
-color: 1px solid #088178;
+background-color: #6649b8;
+color: 1px solid #6649b8;
 }
 
 #banner3{
+  background-color: #000000;
 display: flex;
 justify-content: space-between;
 flex-wrap: wrap;
@@ -402,7 +419,7 @@ height: 30vh;
 background-size: cover;
 background-position: center;
 padding: 20px;
-margin-bottom: 20px;
+margin-bottom: 60px;
 }
 
 #banner3 .banner-box2{
@@ -918,27 +935,28 @@ display: block;
 }
 
 footer{
-margin-top: 30px;
+/* margin-top: 30px; */
 background-color: #d2d5e3;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
+max-height:fit-content;
 }
 
 footer .col{
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-margin-bottom: 20px;
+margin-bottom: 10px;
 }
 
 footer .logo{
-margin-bottom: 30px;
+margin-bottom: 20px;
 }
 
 footer h4{
 font-size: 14px;
-padding-bottom: 20px;
+padding-bottom: 0px;
 }
 
 footer p{
@@ -954,7 +972,7 @@ margin-bottom: 10px;
 }
 
 footer .follow{
-margin-top: 20px;
+margin-top: 7px;
 }
 
 footer .follow i{
@@ -975,4 +993,83 @@ margin: 10px 0 15px 0;
 footer .follow i:hover,
 footer a:hover{
 color: #088178;
+}
+
+.track{
+  height: 70vh;
+  width: 100vw;
+  margin: 0rem;
+  background-color: black;
+  overflow: hidden;
+}
+
+#image-track {
+  display: flex;
+  gap: 4vmin;
+  position: relative;
+  left: 50%;
+  top: 50%; 
+  transform: translate(0%, -50%); 
+  user-select: none; 
+  /* margin-top: 300px; */
+}
+
+#image-track > .image {
+  width: 40vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 100% center;
+}
+
+/* -- YouTube Link Styles -- */
+
+body.menu-toggled > .meta-link > span {
+  color: rgb(30, 30, 30);
+}
+
+#source-link {
+  bottom: 60px;
+}
+
+#source-link > i {
+  color: rgb(94, 106, 210);
+}
+
+#yt-link > i {
+  color: rgb(239, 83, 80);
+}
+
+.meta-link {
+  align-items: center;
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  bottom: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;  
+  display: inline-flex;
+  gap: 5px;
+  left: 10px;
+  padding: 10px 20px;
+  position: fixed;
+  text-decoration: none;
+  transition: background-color 400ms, border-color 400ms;
+  z-index: 10000;
+}
+
+.meta-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.meta-link > i, .meta-link > span {
+  height: 20px;
+  line-height: 20px;
+}
+
+.meta-link > span {
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
 }

@@ -84,7 +84,7 @@ if(but!=null){
           };
           console.log(formData);
           
-        const response = await fetch('http://localhost:5000/newpatient', {
+        const response = await fetch('http://localhost:7878/newpatient', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ if(but!=null){
     
 //     console.log(formData);
 //     });
-//     // const response = await fetch('http://localhost:5000/newpatient', {
+//     // const response = await fetch('http://localhost:7878/newpatient', {
 //     //   method: 'POST',
 //     //   headers: {
 //     //     'Content-Type': 'application/json'
@@ -164,7 +164,7 @@ if(but!=null){
   
     try{
       if(page==='Patient'){
-        const response = await fetch('http://localhost:5000/loginp', {
+        const response = await fetch('http://localhost:7878/loginp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -175,7 +175,7 @@ if(but!=null){
       formData=vardata.patient.formatted_dob;
       }
       else if(page==='Doctor'){
-        const response = await fetch('http://localhost:5000/logind', {
+        const response = await fetch('http://localhost:7878/logind', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -192,7 +192,7 @@ if(but!=null){
     console.log(formData);
     console.log(page);
     // Send a POST request to the server
-    // fetch('http://localhost:5000/login', {
+    // fetch('http://localhost:7878/login', {
     //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json'
@@ -234,3 +234,6 @@ window.location.href = `patient-dashboard.html?patientId=${username}`;
     }
   });
   
+
+
+
