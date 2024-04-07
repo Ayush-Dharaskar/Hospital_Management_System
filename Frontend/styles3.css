@@ -558,9 +558,9 @@ body {
         transition: background-color 0.3s ease;
         }
         
-        .beautiful-list .beautiful-list-item-status-pending:hover {
+        /* .beautiful-list .beautiful-list-item-status-pending:hover {
         background-color: rgb(216, 216, 216);
-        }
+        } */
         
         .beautiful-list .appointment-details {
         margin-left: 10px;
@@ -592,11 +592,13 @@ body {
       }
       
       .beautiful-list-item-status-rejected {
-          color: rgb(252, 103, 103);
+        background-color: rgb(252, 103, 103);
       }
-      
+      .beautiful-list-item-status-pending {
+       background-color:rgb(255, 255, 99) /* Change to your desired hover color */
+    }
       .beautiful-list-item-status-pending:hover {
-          color: #333; /* Change to your desired hover color */
+          background-color: rgb(191, 191, 75); /* Change to your desired hover color */
       }
       
       .beautiful-list-item-status-accepted:hover {
@@ -604,5 +606,5 @@ body {
       }
       
       .beautiful-list-item-status-rejected:hover {
-          color: rgb(212, 8, 8); /* Change to your desired hover color */
+        background-color: rgb(212, 8, 8); /* Change to your desired hover color */
       }
