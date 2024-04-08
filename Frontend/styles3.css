@@ -413,14 +413,29 @@ body {
         .modal {
           display: none; /* Initially hide the modal */
           position: fixed; /* Ensures it stays fixed on the screen */
+          overflow-y: scroll;
           z-index: 1; /* Layer it on top of other elements */
           left: 0;
           top: 0;
           width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: hidden; /* Enable scroll if needed */
+          height: 100%; /* Full height *//* Enable scroll if needed */
           background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
           
+        }
+        .modal::-webkit-scrollbar {
+          width: 0.25rem;
+        }
+        
+        .modal::-webkit-scrollbar-track {
+          background: #1e1e24;
+        }
+        
+        .modal::-webkit-scrollbar-thumb {
+          background: #6649b8;
+        }
+
+        .modal h2{
+            text-align: center;
         }
         
         .modal-content {
