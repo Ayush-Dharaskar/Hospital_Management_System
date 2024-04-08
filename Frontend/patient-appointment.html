@@ -218,9 +218,9 @@
             // Remove the 'continue' statement
           } else {
             var statusClass = "";
-            if (element.status === "accepted") {
+            if (element.status === "Approved") {
               statusClass = "status-accepted";
-            } else if (element.status === "rejected") {
+            } else if (element.status === "rejected" || element.status === "Cancelled") {
               statusClass = "status-rejected";
             } else {
               statusClass = "status-pending";

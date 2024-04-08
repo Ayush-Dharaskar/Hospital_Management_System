@@ -78,7 +78,7 @@
 
         <li class="nav-item">
           <a
-            href="doctor-pres.html"
+            href="#"
             data-page="medical-records"
             onclick="redirecttomedhis()"
             class="nav-link"
@@ -89,13 +89,13 @@
                 d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z"
               />
             </svg>
-            <span class="link-text">Medical Records & Prescription</span>
+            <span class="link-text">Patient Details</span>
           </a>
         </li>
 
         <li class="nav-item">
           <a
-            href="doctor-appointment.html"
+            href="#"
             data-page="appointments"
             onclick="redirectToAppointment()"
             class="nav-link"
@@ -146,12 +146,10 @@
             <span>+</span>
             <span id="phone">Fetching...</span>
           </div>
-          <div class="detail-row">
-            <div class="detail ad">
+          <!-- <div class="detail">
               <label>Address:</label>
               <span id="address">Fetching...</span>
-            </div>
-          </div>
+          </div> -->
 
           <div class="detail">
             <label>Gender:</label>
@@ -162,8 +160,15 @@
             <span id="department">Fetching...</span>
           </div>
           <div class="detail">
-            <label>Experience</label>
-            <span id="experience">Fetching...</span>
+            <label>Next Appointment:</label>
+            <span id="na">Fetching...</span>
+          </div>
+          
+        </div>
+        <div class="detail-row">
+          <div class="detail">
+            <label>Total appointments for today:</label>
+            <span id="taft">m...</span>
           </div>
         </div>
         <!-- <div class="detail">
@@ -184,6 +189,49 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script >
+      async function fetchDoctor(did) {
+        const response = await fetch("http://localhost:7878/doctorextract", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: did }),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        console.log(doctorId);
+        document.getElementById("name1").textContent =data.doctor[0].doctor_name;
+        document.getElementById("phone").textContent = data.doctor[0].phoneno;
+        document.getElementById("gender").textContent = data.doctor[0].gender;
+        document.getElementById("department").textContent=data.doctor[0].dept_name;
+        document.getElementById("na").innerHTML="Date: "+data.next.appoint_date+"<br>Time: "+data.next.appoint_time+"<br>Name: "+data.next.patient_name;
+        document.getElementById("taft").textContent=data.count.na;
+
+      }
+      function redirectTodashboard() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        window.location.href = `doctor-dashboard.html?doctorId=${doctorId}`;
+      }
+      function redirecttomedhis() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        window.location.href = `doctor-pres.html?doctorId=${doctorId}`;
+      }
+      function redirectToAppointment() {
+        const urlParams1 = new URLSearchParams(window.location.search);
+        const doctorId1 = urlParams.get("doctorId");
+        console.log(doctorId1);
+        window.location.href = `doctor-appointment.html?doctorId=${doctorId1}`;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const doctorId = urlParams.get("doctorId");
+      window.onload = fetchDoctor(doctorId);
+
+    </script>
   </body>
 </html>

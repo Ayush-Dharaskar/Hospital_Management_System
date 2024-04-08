@@ -221,7 +221,8 @@ window.location.href = `patient-dashboard.html?patientId=${username}`;
   }
     else if (page === 'Doctor' && password === formData) {
       // Successful login
-      window.location.href = 'doctor-dashboard.html';
+      const username = encodeURIComponent(document.getElementById('username').value);
+      window.location.href = `doctor-dashboard.html?doctorId=${username}`;
     } 
     
     else if (page === 'Admin' && password === 'admin123' && username==='admin') {

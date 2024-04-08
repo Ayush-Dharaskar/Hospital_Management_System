@@ -279,3 +279,55 @@ app.post('/patientpres', async (req, res) => {
 });
 
 
+app.post('/doctorextract', async (req, res) => {
+  try {
+    var  text  = req.body.id;
+  
+    const queryText = 'select * from doctor natural join department where doctor_id= $1';
+    const result = await pool.query(queryText,[text]);
+//todays appointments
+    const queryText1 = 'select count(appointment_id) as na from appointment where doctor_id = $1 and appoint_date = current_date';
+    const result1 = await pool.query(queryText1,[text]);
+    
+    //next appointment
+    const queryText2 = 'SELECT appointment_id, TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date, appoint_time , patient_id,patient_name FROM appointment  natural join patient WHERE doctor_id = $1 AND status = \'Approved\' and (appoint_date > CURRENT_DATE OR (appoint_date = CURRENT_DATE AND appoint_time > CURRENT_TIME)) ORDER BY appoint_date, appoint_time LIMIT 1';
+    const result2 = await pool.query(queryText2,[text]);
+    console.log(result.rows);
+    console.log(result1.rows+"hello");
+    res.json({doctor: result.rows, count:result1.rows[0],next:result2.rows[0]});
+  } catch (error) { 
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  } 
+});
+
+app.post('/doctorappointments', async (req, res) => {
+  try {
+    var  text  = req.body.did;
+  
+    const queryText = 'select appointment_id,TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date,status,appoint_time,reason,patient_name from appointment natural join patient where doctor_id = $1';
+
+    const result = await pool.query(queryText,[text]);
+    console.log(result.rows);
+    res.json({doctor: result.rows});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
+
+
+app.post('/cancelappoint', async (req, res) => {
+  try {
+    var  text  = req.body.aid;
+  
+    const queryText = 'update appointment set status = \'Cancelled\'where appointment_id = $1';
+
+    const result = await pool.query(queryText,[text]);
+    console.log(result.rows);
+    res.json({doctor: result.rows});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
