@@ -267,10 +267,15 @@
         option1.text = "Select Department";
         deptselect.appendChild(option1);
         data.department.forEach((element) => {
+          if(element.dept_id==0){
+            // Remove the 'continue' statement
+          }
+          else{
           var option = document.createElement("option");
           option.value = element.dept_id;
           option.text = element.dept_name;
           deptselect.appendChild(option);
+        }
         });
         document
           .getElementById("department")
@@ -324,6 +329,7 @@
 
         $("#appointment-form").submit(async function (event) {
           event.preventDefault();
+          var doctor=document.getElementById("doctor").value;
           const response = await fetch("http://localhost:7878/reqappointment", {
             method: "POST",
             headers: {

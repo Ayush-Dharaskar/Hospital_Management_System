@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>History</title>
+    <title>Appointments</title>
     <link rel="stylesheet" href="styles3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <!-- <section id="header">
@@ -14,9 +15,11 @@
       </div>
 
       <div>
-        <ul id="navbar">
-          <li><a href="index.html">Logout</a></li>
-        </ul>
+        <div>
+          <ul id="navbar">
+            <li><a href="index.html">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </section> -->
 
@@ -69,7 +72,7 @@
           </a>
         </li>
 
-        <li class="nav-item" id="item2">
+        <li class="nav-item">
           <a
             href="#"
             data-page="medical-records"
@@ -119,28 +122,34 @@
             <span class="link-text">Appointments</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a
-            href="#"
-            data-page="appointments"
-            onclick="redirectToNotification()"
-            class="nav-link"
-          >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path
-                d="M456 32H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32zm0 448H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32zm-32-128h-32v-224h32v224zm448-128h-32v-224h32v224z"
-              />
-            </svg>
-            <span class="link-text">Notifications</span>
-          </a>
-        </li>
+        <li class="nav-item" id="item2">
+            <a
+              href="#"
+              data-page="appointments"
+              onclick="redirectToNotification()"
+              class="nav-link"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M456 32H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32zm0 448H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32zm-32-128h-32v-224h32v224zm448-128h-32v-224h32v224z"
+                />
+              </svg>
+              <span class="link-text">Notifications</span>
+            </a>
+          </li>
 
         <li class="nav-item" id="themeButton">
           <a href="index.html" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>              <span class="link-text">Logout</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              />
+            </svg>
+            <span class="link-text">Logout</span>
           </a>
         </li>
-      </ul>
+        <!-- </ul> -->
       </ul>
     </section>
 
@@ -149,19 +158,22 @@
     <div class="main-content">
       <p class="ap-title"></p>
       <div class="appointment-list">
-        <h2>Previous History</h2>
+        <h2>Notifications</h2>
         <ul id="appointments-list" class="appointments-list beautiful-list">
           <!-- Appointments will be dynamically inserted here -->
         </ul>
       </div>
     </div>
 
+    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
       $(document).ready(async function () {
         const urlParams = new URLSearchParams(window.location.search);
         const patientId = urlParams.get("patientId");
-        const resp = await fetch("http://localhost:7878/patientmedhis", {
+        console.log(patientId);
+        const resp = await fetch("http://localhost:7878/patient_notification", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -179,26 +191,17 @@
 
         appointments.forEach((element) => {
           var li = document.createElement("li");
-          if (element.appoint_time === null) {
-            element.appoint_time = "Not Assigned";
-          }
-          if (element.status === "Done") {
-            // Remove the 'continue' statement
-          } else {
+          
             li.innerHTML =
-              "<b>Doctor: </b>" +
-              element.doctor_name +
-              "&nbsp&nbsp&nbsp" +
+              "<b>Appointmnet id: </b>" +
+              element.updates_id +
+              "&nbsp" +
+              element.notification +"&nbsp&nbsp&nbsp" +
               " <b>Date:</b> " +
-              element.rec_date +
-              "&nbsp&nbsp&nbsp" +
-              " <b>Diagnosis:</b> " +
-              element.diagnosis +
-              "&nbsp&nbsp&nbsp" +
-              " <b>Prescription Id:</b>" +
-              element.rec_id;
+              element.udate+ "&nbsp&nbsp&nbsp" +
+              " <b>TIme:</b> " +
+              element.utime;
             appoint.appendChild(li);
-          }
         });
       });
       const urlParams1 = new URLSearchParams(window.location.search);

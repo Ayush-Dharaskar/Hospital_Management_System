@@ -125,7 +125,7 @@
     </section>
 
     <div class="main-content" id="mainContent">
-      <h1>Doctor Dashboard</h1>
+      <h1>Welcome Doctor</h1>
       <div class="patient-details">
         <h2>Your Details</h2>
         <div class="detail-row">
@@ -156,19 +156,19 @@
             <span id="gender">Fetching...</span>
           </div>
           <div class="detail">
-            <label>Department</label>
+            <label>Department:</label>
             <span id="department">Fetching...</span>
           </div>
           <div class="detail">
             <label>Next Appointment:</label>
-            <span id="na">Fetching...</span>
+            <span id="na">No appointments for today</span>
           </div>
           
         </div>
         <div class="detail-row">
           <div class="detail">
             <label>Total appointments for today:</label>
-            <span id="taft">m...</span>
+            <span id="taft">0</span>
           </div>
         </div>
         <!-- <div class="detail">
@@ -210,6 +210,11 @@
         document.getElementById("department").textContent=data.doctor[0].dept_name;
         document.getElementById("na").innerHTML="Date: "+data.next.appoint_date+"<br>Time: "+data.next.appoint_time+"<br>Name: "+data.next.patient_name;
         document.getElementById("taft").textContent=data.count.na;
+        console.log(document.getElementById("na").value);
+        // if(document.getElementById("na").textContent==="Fetching..."){
+        //   document.getElementById("na").textContent="No appointments for today";
+        // }
+       
 
       }
       function redirectTodashboard() {

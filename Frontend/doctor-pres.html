@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="styles3.css" />
+  </head>
+  <style>
+    h1 {
+            text-align: center;
+        }
+
+        #prescriptionForm {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #item1{
+        background-color: #6649b8;
+        }
+  </style>
+  <body>
+    <!-- <section id="header">
+      <a href="#"><img src="img/logo.avif" class="logo" alt="" /></a>
+
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="patient-login.html">Patient</a></li>
+          <li><a class="active" href="doctor-login.html">Doctor</a></li>
+          <li><a href="admin-login.html">Admin</a></li>
+          <li>
+            <a href="cart.html"><i class="far fa-shopping-bag"></i> </a>
+          </li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section> -->
+
+    <section class="navbar2">
+      <!-- <nav class="navbar2"> -->
+      <ul class="navbar-nav">
+        <li class="logo2">
+          <a href="#" class="nav-link">
+            <span class="link-text logo-text">ASA</span>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fad"
+              data-icon="angle-double-right"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+            >
+              <g class="fa-group">
+                <path
+                  fill="currentColor"
+                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                  class="fa-secondary"
+                ></path>
+                <path
+                  fill="currentColor"
+                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                  class="fa-primary"
+                ></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            href="#"
+            data-page="dashboard"
+            onclick="redirectTodashboard()"
+            class="nav-link"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+              />
+            </svg>
+            <span class="link-text">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item" id="item1">
+          <a
+            href="#"
+            data-page="medical-records"
+            onclick="redirecttomedhis()"
+            class="nav-link"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M96 352V96c0-35.3 28.7-64 64-64H416c35.3 0 64 28.7 64 64V293.5c0 17-6.7 33.3-18.7 45.3l-58.5 58.5c-12 12-28.3 18.7-45.3 18.7H160c-35.3 0-64-28.7-64-64zM272 128c-8.8 0-16 7.2-16 16v48H208c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V256h48c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H320V144c0-8.8-7.2-16-16-16H272zm24 336c13.3 0 24 10.7 24 24s-10.7 24-24 24H136C60.9 512 0 451.1 0 376V152c0-13.3 10.7-24 24-24s24 10.7 24 24l0 224c0 48.6 39.4 88 88 88H296z"
+              />
+            </svg>
+            <span class="link-text">Patient Details</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            href="#"
+            data-page="appointments"
+            onclick="redirectToAppoi()"
+            class="nav-link"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+              />
+            </svg>
+            <span class="link-text">Appointments</span>
+          </a>
+        </li>
+
+        <li class="nav-item" id="themeButton">
+          <a href="index.html" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              />
+            </svg>
+            <span class="link-text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+     <div class="main-content">
+      <p class="ap-title"></p>
+      <div class="appointment-list">
+        <h2>Add Medical Details for patiient</h2>
+        <label for="patientId">Enter Patient ID:</label>
+        <input type="text" id="patientId" placeholder="Patient ID">
+        <button onclick="showPrescriptionForm()">Add Prescription</button>
+    
+        <div id="prescriptionForm" style="display: none;">
+            <h2>Add Prescription</h2>
+            <label for="diagnosis">Diagnosis:</label>
+            <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
+    
+            <label for="medicineName">Medicine Name:</label>
+            <input type="text" id="medicineName" placeholder="Medicine Name">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Quantity">
+            <button onclick="addMedicine()">Add Medicine</button>
+    
+            <table id="medicineTable">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="medicineList">
+                </tbody>
+            </table>
+    
+            <button onclick="submitPrescription()">Submit Prescription</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="main-content" id="mainContent">
+      <div class="patient-details">
+        <div class="appointment-list">
+            <h2>Doctor Prescription Portal</h2>
+    <label for="patientId">Enter Patient ID:</label>
+    <input type="text" id="patientId" placeholder="Patient ID">
+    <button onclick="showPrescriptionForm()">Add Prescription</button>
+
+    <div id="prescriptionForm" style="display: none;">
+        <h2>Add Prescription</h2>
+        <label for="diagnosis">Diagnosis:</label>
+        <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
+
+        <label for="medicineName">Medicine Name:</label>
+        <input type="text" id="medicineName" placeholder="Medicine Name">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" placeholder="Quantity">
+        <button onclick="addMedicine()">Add Medicine</button>
+
+        <table id="medicineTable">
+            <thead>
+                <tr>
+                    <th>Medicine Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="medicineList">
+            </tbody>
+        </table>
+
+        <button onclick="submitPrescription()">Submit Prescription</button>
+    </div>
+        </div>
+        
+      </div>
+    </div> -->
+
+    <script >
+      function showPrescriptionForm() {
+    var patientId = document.getElementById("patientId").value;
+    if (patientId.trim() === "") {
+        alert("Please enter a patient ID.");
+        return;
+    }
+    document.getElementById("prescriptionForm").style.display = "block";
+}
+
+function addMedicine() {
+    var medicineName = document.getElementById("medicineName").value;
+    var quantity = document.getElementById("quantity").value;
+
+    if (medicineName.trim() === "" || quantity.trim() === "") {
+        alert("Please enter medicine name and quantity.");
+        return;
+    }
+
+    var medicineList = document.getElementById("medicineList");
+    var newRow = medicineList.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+
+    cell1.innerHTML = medicineName;
+    cell2.innerHTML = quantity;
+
+    // Clear input fields
+    document.getElementById("medicineName").value = "";
+    document.getElementById("quantity").value = "";
+}
+
+function submitPrescription() {
+    var patientId = document.getElementById("patientId").value;
+    var diagnosis = document.getElementById("diagnosis").value;
+
+    if (patientId.trim() === "" || diagnosis.trim() === "") {
+        alert("Please enter patient ID and diagnosis.");
+        return;
+    }
+
+    // Construct prescription object
+    var prescription = {
+        patientId: patientId,
+        diagnosis: diagnosis,
+        medicines: []
+    };
+
+    // Retrieve medicines from table
+    var medicineRows = document.getElementById("medicineList").getElementsByTagName("tr");
+    for (var i = 0; i < medicineRows.length; i++) {
+        var cells = medicineRows[i].getElementsByTagName("td");
+        if (cells.length === 2) {
+            var medicineName = cells[0].innerHTML;
+            var quantity = cells[1].innerHTML;
+            prescription.medicines.push({ medicineName: medicineName, quantity: quantity });
+        }
+    }
+
+    // Send prescription data to server (You need to implement this part)
+    console.log(prescription); // For testing, replace with actual AJAX request
+    alert("Prescription submitted successfully!");
+}
+      function redirectTodashboard() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        window.location.href = `doctor-dashboard.html?doctorId=${doctorId}`;
+      }
+      function redirecttomedhis() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        window.location.href = `doctor-pres.html?doctorId=${doctorId}`;
+      }
+      function redirectToAppoi() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        window.location.href = `doctor-appointment.html?doctorId=${doctorId}`;
+      }
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const doctorId = urlParams.get("doctorId");
+    //   window.onload = fetchDoctor(doctorId);
+
+    </script>
+  </body>
+</html>

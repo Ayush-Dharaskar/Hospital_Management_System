@@ -119,6 +119,21 @@
             <span class="link-text">Appointments</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a
+            href="#"
+            data-page="appointments"
+            onclick="redirectToNotification()"
+            class="nav-link"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M456 32H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32zm0 448H96c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h360c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32zm-32-128h-32v-224h32v224zm448-128h-32v-224h32v224z"
+              />
+            </svg>
+            <span class="link-text">Notifications</span>
+          </a>
+        </li>
 
         <li class="nav-item" id="themeButton">
           <a href="index.html" class="nav-link">
@@ -237,6 +252,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         const patientId = urlParams.get("patientId");
         window.location.href = `patient-dashboard.html?patientId=${patientId}`;
+      }
+      function redirectToNotification(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const patientId = urlParams.get("patientId");
+        window.location.href = `patient-notification.html?patientId=${patientId}`;
       }
     </script>
   </body>
