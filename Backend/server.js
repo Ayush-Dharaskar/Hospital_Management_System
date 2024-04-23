@@ -401,11 +401,15 @@ app.post('/allpatients', async (req, res) => {
 
 app.post('/allappointments', async (req, res) => {
   try {
-
-    const queryText = 'SELECT appointment_id,patient_id,doctor_id,TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date,appoint_time,status,reason FROM appointment ORDER BY CASE WHEN status = \'Pending\' THEN 0 ELSE 1 END, status DESC';
+    const totld='select count(doctor_id) as dids from doctor';
+    const totldres=await pool.query(totld);
+    const totlapp='select count(appointment_id) as aids from appointment where status=\'Pending\'';
+    const totlappres=await pool.query(totlapp);
+    const queryText = 'SELECT appointment_id,patient_id,doctor_name,dept_name,TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date,appoint_time,status,reason FROM appointment natural join doctor natural join department ORDER BY CASE WHEN status = \'Pending\' THEN 0 ELSE 1 END, status,appoint_date DESC';
     const result = await pool.query(queryText);
-    console.log(result.rows);
-    res.json({appoinments: result.rows});
+    
+    console.log();
+    res.json({appoinments: result.rows,totld:totldres.rows[0],totlapp:totlappres.rows[0]});
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to add text to PostgreSQL'});
@@ -453,6 +457,26 @@ app.post('/addpres', async (req, res) => {
 
 
     res.json({appoinments: result.rows});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
+
+
+app.post('/updateappointment', async (req, res) => {
+  try {
+
+    var did = req.body.did;
+    var time = req.body.time;
+    var date = req.body.date;
+    var aid = req.body.aid;
+    var status = req.body.status;
+    console.log(req.body);
+    const queryText = 'update appointment set appoint_time = $1, appoint_date = $2, status = $3, doctor_id =$4 where appointment_id = $5'; 
+    var result = await pool.query(queryText,[time,date,status,did,aid]);
+
+    res.status(200);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
