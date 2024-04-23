@@ -580,6 +580,9 @@ body {
         .beautiful-list .appointment-details {
         margin-left: 10px;
         }
+        #item1{
+          background-color: #6649b8;
+        }
         
         .beautiful-list .appointment-details h3 {
         margin: 0;
