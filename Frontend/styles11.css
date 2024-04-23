@@ -540,13 +540,16 @@ overflow-y: auto;
   width: 100%;
   font-weight: 600;
 }
-.dashboard table td svg{
-  display: flex;
-  margin: 0 auto;
+.dashboard table td{
+  text-align: center;
 }
-.dashboard table td .green{
-  font-size: 20px;
-  color: #16a34a;
+
+.dashboard table th{
+  text-align: center;
+}
+
+.dashboard table tr{
+  background-color: #d9eaf0;
 }
 .dashboard table td .red{
   font-size: 20px;
@@ -645,6 +648,7 @@ overflow-y: auto;
   width: 600px;
   height: 50px;
   font-size: 20px;
+  margin-bottom: 30px;
   }
   
   .appointment-button:hover {

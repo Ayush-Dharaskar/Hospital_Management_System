@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hospital Management System</title>
-    <link rel="stylesheet" href="styles13.css" />
+    <link rel="stylesheet" href="styles14.css" />
   </head>
   <body>
     <section class="navbar2">
@@ -56,7 +56,7 @@
           </a>
         </li>
 
-        <li class="nav-item" id="item1">
+        <li class="nav-item">
           <a
             href="admin-doctors.html"
             data-page="medical-records"
@@ -73,7 +73,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" id="item1">
           <a
             href="admin-patients.html"
             data-page="prescription"
@@ -104,70 +104,110 @@
       </ul>
     </section>
 
-    <section id="product1" class="section-p1">
-      <div class="pro-container" id="doctorlist">
-        <div class="pro"></div>
+    <div class="cont">
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search patients..."
+        />
+        <button class="search-button">Search</button>
       </div>
-      <div id="butt">
-        <button class="add-doctor" id="open-appointment-dialog">
-          Add Doctor
-        </button>
-        <button class="add-doctor" id="open-appointment-dialog2">
-          Remove Doctor
-        </button>
-      </div>
-    </section>
-
-    <div id="appointment-dialog" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Add Doctor</h2>
-        <form id="appointment-form">
-          <div class="form-group">
-            <label for="department">Department:</label>
-            <select id="department" name="department" required>
-              <!-- Add more options as needed -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="doctor">Doctor Name:</label>
-            <textarea id="doctor" name="doctor" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="concern">Gender:</label>
-            <textarea id="gender" name="gender" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="doctor">Mobile number:</label>
-            <textarea id="mobile" name="mobile" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="doctor">Password:</label>
-            <textarea id="password" name="password" required></textarea>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+      <div>
+        <button class="butt" id="open-appointment-dialog">Add Patient</button>
       </div>
     </div>
 
-    <div id="appointment-dialog2" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Remove Doctor</h2>
-        <form id="appointment-form2">
-          <div class="form-group">
-            <label for="doctor">Doctor ID:</label>
-            <textarea id="doctor2" name="doctor" required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="doctor">Doctor Name:</label>
-            <textarea id="doctor3" name="doctor" required></textarea>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+    <div class="card">
+      <h2>Patients</h2>
+      <ul class="patient-list">
+        <!-- Patient details will be dynamically inserted here -->
+        <!-- Example patient item:
+          <li class="patient-item">
+            <h3>Patient Name</h3>
+            <p>Age: XX</p>
+            <p>Gender: XX</p>
+            <p>Address: XXXX</p>
+          </li>
+          -->
+      </ul>
+    </div>
+
+    <div id="appointment-dialog" class="modal">
+      <div class="container">
+        <div class="patient-info-section">
+          <span class="close">&times;</span>
+          <h2 class="section-title">Add Patient Information</h2>
+          <form action="#" class="patient-form" id="patientForm">
+            <div class="form-group">
+              <label for="first-name" class="form-label">First Name *</label>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="last-name" class="form-label">Last Name *</label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Id *</label>
+              <input type="email" id="email" name="email" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="mobile-number" class="form-label"
+                >Mobile Number *</label
+              >
+              <input
+                type="text"
+                id="mobile-number"
+                name="mobile-number"
+                class="form-input"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gender" class="form-label">Gender *</label>
+              <select id="gender" name="gender" class="form-select">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="dob" class="form-label">Date of Birth *</label>
+              <input type="date" id="dob" name="dob" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="height" class="form-label">Height (cm) *</label>
+              <input type="text" id="height" name="height" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="weight" class="form-label">Weight (kg) *</label>
+              <input type="text" id="weight" name="weight" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="blood-group" class="form-label">Blood Group *</label>
+              <select id="blood-group" name="blood-group" class="form-select">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <button id="newpa" type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -193,24 +233,6 @@
         }
       });
 
-      var modal2 = $("#appointment-dialog2");
-      var btn2 = $("#open-appointment-dialog2");
-      var closeSpan2 = $(".close");
-
-      btn2.click(function () {
-        modal2.show();
-      });
-
-      closeSpan2.click(function () {
-        modal2.hide();
-      });
-
-      $(window).click(function (event) {
-        if (event.target.id === "appointment-dialog2") {
-          modal2.hide();
-        }
-      });
-
       document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch("http://localhost:7878/deptextract", {
           method: "POST",
@@ -220,101 +242,6 @@
           body: JSON.stringify(),
         });
         const data = await response.json();
-
-        var deptselect = document.getElementById("department");
-        deptselect.innerHTML = "";
-        var option1 = document.createElement("option");
-        option1.value = 0;
-        option1.text = "Select Department";
-        deptselect.appendChild(option1);
-        data.department.forEach((element) => {
-          if (element.dept_id == 0) {
-            // Remove the 'continue' statement
-          } else {
-            var option = document.createElement("option");
-            option.value = element.dept_id;
-            option.text = element.dept_name;
-            deptselect.appendChild(option);
-          }
-        });
-        // Fetch Doctors
-        const urlParams = new URLSearchParams(window.location.search);
-        const patientId = urlParams.get("patientId");
-        const resp = await fetch("http://localhost:7878/alldoctors", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ patient: patientId }),
-        });
-
-        const data1 = await resp.json();
-        console.log(data1);
-        const doctors = data1.doctor;
-
-        const doctorList = document.getElementById("doctorlist");
-
-        // Clear existing content before adding new doctors
-        doctorList.innerHTML = "";
-
-        doctors.forEach((doctor) => {
-          if (doctor.doctor_id != 0) {
-            // Create a new doctor card element
-            const doctorCard = document.createElement("div");
-            doctorCard.classList.add("pro");
-
-            // Populate the doctor card with data
-            doctorCard.innerHTML = `
-              <h3>${doctor.doctor_name}</h3>
-              <p><strong>Doctor ID:</strong> ${doctor.doctor_id}</p>
-              <p><strong>Department:</strong> ${doctor.dept_name}</p>
-              <p><strong>Department Id:</strong> ${doctor.dept_id}</p>
-              <p><strong>Gender:</strong> ${doctor.gender}</p>
-              <p><strong>Phone number:</strong> +91${doctor.phoneno}</p>
-              <!-- Add more details here as needed -->
-            `;
-
-            // Append the doctor card to the doctor list container
-            doctorList.appendChild(doctorCard);
-          }
-        });
-      });
-
-      $("#appointment-form").submit(async function (event) {
-        event.preventDefault();
-        formData = {
-          dept: document.getElementById("department").value,
-          name: document.getElementById("doctor").value,
-          gender: document.getElementById("gender").value,
-          number: document.getElementById("mobile").value,
-          pass: document.getElementById("password").value,
-        };
-        console.log(formData);
-        const response = await fetch("http://localhost:7878/newdoctor", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-        modal.hide();
-        alert("Doctor Added Successfully");
-      });
-      $("#appointment-form2").submit(async function (event) {
-        event.preventDefault();
-        formData = {
-          did: document.getElementById("doctor2").value,
-        };
-        console.log(formData);
-        const response = await fetch("http://localhost:7878/deletedoctor", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-        modal.hide();
-        alert("Doctor deleted Successfully");
       });
     </script>
   </body>

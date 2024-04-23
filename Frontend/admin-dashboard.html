@@ -113,23 +113,6 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a
-            href="admin-messages.html"
-            data-page="appointments"
-            onclick="redirectToAppointment()"
-            class="nav-link"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-              <path
-                d="M128 0c13.3 0 24 10.7 24 24V64H296V24c0-13.3 10.7-24 24-24s24 10.7 24 24V64h40c35.3 0 64 28.7 64 64v16 48V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V192 144 128C0 92.7 28.7 64 64 64h40V24c0-13.3 10.7-24 24-24zM400 192H48V448c0 8.8 7.2 16 16 16H384c8.8 0 16-7.2 16-16V192zM329 297L217 409c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47 95-95c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
-              />
-            </svg>
-            <span class="link-text">Messages</span>
-          </a>
-        </li>
-
         <li class="nav-item" id="themeButton">
           <a href="index.html" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -197,7 +180,6 @@
               <th>Appointment Id</th>
               <th>Reason</th>
               <th>Time</th>
-              
             </tr>
           </thead>
           <tbody id="appointmentsBody">
@@ -283,28 +265,29 @@
           modal.hide();
         }
       });
-      document.addEventListener("DOMContentLoaded", async() => {
-
+      document.addEventListener("DOMContentLoaded", async () => {
         $("#appointment-form").submit(async function (event) {
           event.preventDefault();
-          var FormData={
-            did:document.getElementById("doctor").value,
-              time:document.getElementById("concern").value,
-              date:document.getElementById("appointment-date").value,
-              status:document.getElementById("status").value,
-              aid:document.getElementById("appid").value,
+          var FormData = {
+            did: document.getElementById("doctor").value,
+            time: document.getElementById("concern").value,
+            date: document.getElementById("appointment-date").value,
+            status: document.getElementById("status").value,
+            aid: document.getElementById("appid").value,
           };
-          console.log(FormData); 
-          const response = await fetch("http://localhost:7878/updateappointment", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(FormData),
-          });
+          console.log(FormData);
+          const response = await fetch(
+            "http://localhost:7878/updateappointment",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(FormData),
+            }
+          );
           modal.hide();
         });
-
 
         const response = await fetch("http://localhost:7878/deptextract", {
           method: "POST",
@@ -322,15 +305,14 @@
         option1.text = "Select Department";
         deptselect.appendChild(option1);
         data.department.forEach((element) => {
-          if(element.dept_id==0){
+          if (element.dept_id == 0) {
             // Remove the 'continue' statement
+          } else {
+            var option = document.createElement("option");
+            option.value = element.dept_id;
+            option.text = element.dept_name;
+            deptselect.appendChild(option);
           }
-          else{
-          var option = document.createElement("option");
-          option.value = element.dept_id;
-          option.text = element.dept_name;
-          deptselect.appendChild(option);
-        }
         });
         document
           .getElementById("department")
@@ -362,7 +344,6 @@
               doctorselect.appendChild(option);
             });
           });
-          
 
         // Fetch appointments and render table
         fetchAppointments();
@@ -399,7 +380,7 @@
               row.insertCell().textContent = appointment.dept_name;
               row.insertCell().textContent = appointment.status;
               row.insertCell().textContent = appointment.appointment_id;
-              
+
               row.insertCell().textContent = appointment.reason;
               row.insertCell().textContent = appointment.appoint_time;
             });

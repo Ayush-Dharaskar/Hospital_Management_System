@@ -1,0 +1,551 @@
+html{
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: hidden; /* Enable vertical scrolling */
+    background-image: url('img/a-dark-atmospheric-hospital-website-background-ima-QibvOxOsTQaOI5cIU4OSVg-kgfHMbIaSWqOoTgZlX6M8w-.jpeg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+    background-size: cover; /* Ensure the background image covers the entire section */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+    }
+  
+    :root {
+        font-size: 16px;
+        font-family: 'Open Sans';
+        --text-primary: #b6b6b6;
+        --text-secondary: #ececec;
+        --bg-primary: #23232e;
+        --bg-secondary: #141418;
+        --transition-speed: 600ms;
+      }
+      
+      body {
+        color: black;
+        background-color: white;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body::-webkit-scrollbar {
+        width: 0.25rem;
+      }
+      
+      body::-webkit-scrollbar-track {
+        background: #1e1e24;
+      }
+      
+      body::-webkit-scrollbar-thumb {
+        background: #6649b8;
+      }
+      
+      main {
+        margin-left: 5rem;
+        padding: 1rem;
+      }
+      
+      .navbar2 {
+        position: fixed;
+        background-color: var(--bg-primary);
+        transition: width 600ms ease;
+        /* overflow: scroll; */
+      }
+      
+      .navbar-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+      }
+      
+      .nav-item {
+        width: 100%;
+      }
+  
+      #item1{
+        background-color: #6649b8;
+      }
+      
+      .nav-item:last-child {
+        margin-top: auto;
+      }
+      
+      .nav-link {
+        display: flex;
+        align-items: center;
+        height: 5rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        filter: grayscale(100%) opacity(0.7);
+        transition: var(--transition-speed);
+      }
+      
+      .nav-link:hover {
+        filter: grayscale(0%) opacity(1);
+        background: #6649b8;
+        color: var(--text-secondary);
+      }
+      
+      .link-text {
+        display: none;
+        margin-left: 1rem;
+      }
+      
+      .nav-link svg {
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 1.5rem;
+      }
+      
+      .fa-primary {
+        color: #ff7eee;
+      }
+      
+      .fa-secondary {
+        color: #df49a6;
+      }
+      
+      .fa-primary,
+      .fa-secondary {
+        transition: var(--transition-speed);
+      }
+      
+      .logo2 {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: var(--text-secondary);
+        background: var(--bg-secondary);
+        font-size: 1.5rem;
+        letter-spacing: 0.3ch;
+        width: 100%;
+      }
+      
+      .logo2 svg {
+        transform: rotate(0deg);
+        transition: var(--transition-speed);
+      }
+      
+      .logo-text
+      {
+        display: inline;
+        position: absolute;
+        left: -999px;
+        transition: var(--transition-speed);
+      }
+      
+      .navbar2:hover .logo2 svg {
+        transform: rotate(-180deg);
+      }
+      
+      /* Small screens */
+      @media only screen and (max-width: 600px) {
+        .navbar {
+          bottom: 0;
+          width: 100vw;
+          height: 6rem;
+        }
+      
+        .logo {
+          display: none;
+        }
+      
+        .navbar-nav {
+          flex-direction: row;
+        }
+      
+        .nav-link {
+          justify-content: center;
+        }
+      
+        main {
+          margin: 0;
+        }
+      }
+      
+      /* Large screens */
+      @media only screen and (min-width: 600px) {
+        .navbar2 {
+          top: 0;
+          width: 5rem;
+          height: 100vh;
+        }
+      
+        .navbar2:hover {
+          width: 16rem;
+        }
+      
+        .navbar2:hover .link-text {
+          display: inline;
+        }
+      
+        .navbar2:hover .logo2 svg
+        {
+          margin-left: 11rem;
+        }
+      
+        .navbar2:hover .logo-text
+        {
+          left: 0px;
+        }
+      }
+      
+      .dark {
+        --text-primary: #b6b6b6;
+        --text-secondary: #ececec;
+        --bg-primary: #23232e;
+        --bg-secondary: #141418;
+      }
+      
+      .light {
+        --text-primary: #1f1f1f;
+        --text-secondary: #000000;
+        --bg-primary: #ffffff;
+        --bg-secondary: #e4e4e4;
+      }
+      
+      .solar {
+        --text-primary: #576e75;
+        --text-secondary: #35535c;
+        --bg-primary: #fdf6e3;
+        --bg-secondary: #f5e5b8;
+      }
+      
+      .theme-icon {
+        display: none;
+      }
+      
+      .dark #darkIcon {
+        display: block;
+      }
+      
+      .light #lightIcon {
+        display: block;
+      }
+      
+      .solar #solarIcon {
+        display: block;
+      }
+  
+      #product1{
+        text-align: center;
+        
+        margin-top: -20px;
+        margin-left: -40px;
+    }
+
+    .card {
+        width: 100%;
+        height: 550px;
+        margin-top: 50px;
+        margin-left: 250px;
+        max-width: 900px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+  
+      .patient-list {
+        list-style-type: none;
+        padding: 0;
+      }
+  
+      .patient-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+      }
+  
+      .patient-item:last-child {
+        border-bottom: none;
+      }
+  
+      .patient-item h3 {
+        margin: 0;
+        color: #333;
+      }
+  
+      .patient-item p {
+        margin: 5px 0 0 0;
+        color: #777;
+      }
+
+
+      .cont{
+        display: flex;
+        justify-content: space-around;
+        padding: 0px;
+      }
+
+      .butt{
+        width: 220px;
+        margin-top: 60px;
+        margin-left: -200px;
+      font-size: large;
+      height: 60px;
+      padding: 10px;
+      background-color: #6649b8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      }
+
+      .butt:hover{
+        background-color: #2F1771;
+      }
+
+      .search-container {
+        display: flex;
+        margin-bottom: 10px;
+        margin-top: 60px;
+        height: 60px;
+        margin-right: -200px;
+      }
+  
+      .search-input {
+        width: 500px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+  
+      .search-button {
+        font-size: large;
+        width: 100px;
+        background-color: #6649b8;
+        color: #fff;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        padding: 10px 15px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s ease;
+      }
+  
+      .search-button:hover {
+        background-color: #2F1771;
+      }
+
+      .search-input {
+        font-size: 16px; /* Adjust the font size of the input text */
+        padding: 10px; /* Adjust the padding to increase the input size */
+      }
+      
+      .search-input::placeholder {
+        font-size: 16px; /* Adjust the font size of the placeholder text */
+      }
+
+      .modal {
+        display: none; /* Initially hide the modal */
+        position: fixed; /* Ensures it stays fixed on the screen */
+        overflow-y:scroll;
+        z-index: 1; /* Layer it on top of other elements */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height // Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        
+      }
+      .modal::-webkit-scrollbar {
+        width: 0.25rem;
+      }
+      
+      .modal::-webkit-scrollbar-track {
+        background: #1e1e24;
+      }
+      
+      .modal::-webkit-scrollbar-thumb {
+        background: #6649b8;
+      }
+  
+      .modal h2{
+          text-align: center;
+      }
+      
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px; /* Increased max-width for better readability */
+        border-radius: 10px; /* Added border radius */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Added box shadow */
+      }
+  
+      .modal-content h2{
+        text-align: center;
+        padding: 10px;
+      }
+      
+        .close {
+        margin-left: 470px;
+        font-size: 24px;
+        color: rgba(39, 30, 74, 0.8);
+        cursor: pointer;
+      }
+      
+      .close:hover {
+        color: rgba(39, 30, 74, 1);
+      } 
+      
+      /* Added hover effect for modal content */
+      .modal-content:hover {
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      }
+      
+      /* Added transition for smoother effects */
+      .modal-content,
+      .close {
+        transition: 0.3s;
+      }
+      
+      /* Added styling for form elements */
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+      input[type="date"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      
+      button[type="submit"] {
+        padding: 12px 24px;
+        background-color: #6649b8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 40%;
+        width: 150px;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: #2F1771;
+      }
+      
+      /* Added styling for the select dropdown */
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        appearance: none; /* Remove default appearance */
+        -webkit-appearance: none; /* For older versions of Chrome and Safari */
+        -moz-appearance: none; /* For older versions of Firefox */
+      }
+      
+      /* Added arrow icon for select dropdown */
+      select::after {
+        content: '\25BC'; /* Unicode character for down arrow */
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none; /* Ensure it doesn't interfere with the click */
+      }
+  
+  
+      select {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 12l-5-5-5 5h10z" clip-rule="evenodd"/></svg>'); /* Use SVG image as background */
+        background-repeat: no-repeat;
+        background-position: right 10px center; /* Position arrow icon */
+        background-size: 12px; /* Set size of the arrow icon */
+        padding-right: 25px; /* Adjust padding to make space for the arrow icon */
+      }
+      
+      /* Hide default arrow in Firefox */
+      @-moz-document url-prefix() {
+        select {
+          background-image: none;
+        }
+      }
+
+      .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-bottom: 60px;
+        margin-top: 70px;
+        
+      }
+      
+      .patient-info-section {
+      width: 500px;
+      background: white;
+      box-shadow: 0px 4px 15px rgba(216, 210, 252, 0.64);
+      border-radius: 47px;
+      padding: 30px;
+      overflow-y: auto; /* Add overflow-y to enable vertical scroll */
+      max-height: 1600px
+
+      }
+      
+      .section-title {
+        color: #271e4a;
+        font-size: 24px;
+        font-family: Kanit;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-label {
+        color: rgba(39, 30, 74, 0.8);
+        font-size: 16px;
+        font-family: Kanit;
+        font-weight: 300;
+        margin-bottom: 5px;
+      }
+      
+      .form-input,
+      .form-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid rgba(39, 30, 74, 0.5);
+        border-radius: 5px;
+      }
+      
+      .submit-btn {
+        width: 100%;
+        height: 40px;
+        background: #6649b8;
+        color: white;
+        font-size: 16px;
+        font-family: Kanit;
+        font-weight: 500;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
