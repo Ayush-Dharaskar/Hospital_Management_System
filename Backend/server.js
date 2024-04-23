@@ -198,7 +198,7 @@ app.post('/patientappointments', async (req, res) => {
 });
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log('Server is running on port ${port}');
 });
 
 app.post('/reqappointment', async (req, res) => {
@@ -354,7 +354,7 @@ app.post('/newdoctor', async (req, res) => {
     var gender = req.body.gender;
     var pass =req.body.pass;
     
-
+    console.log(req.body);
     var queryaid = 'select count(doctor_id) from doctor'; 
     var aid = await pool.query(queryaid);
 
@@ -376,7 +376,7 @@ app.post('/newdoctor', async (req, res) => {
 app.post('/alldoctors', async (req, res) => {
   try {
 
-    const queryText = 'select * doctor';
+    const queryText = 'select doctor_name,doctor_id,dept_id,phoneno,dept_name,gender from doctor natural join department';
     const result = await pool.query(queryText);
     console.log(result.rows);
     res.json({doctor: result.rows});
