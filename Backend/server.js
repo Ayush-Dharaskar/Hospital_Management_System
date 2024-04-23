@@ -432,6 +432,7 @@ app.post('/addpres', async (req, res) => {
     var dig = req.body.dig;
     var did = req.body.did;
     var medicines = req.body.medicines;
+    console.log(req.body);
 
     var status = "not paid"
     var queryaid = 'select count(rec_id) from medicalrecord'; 

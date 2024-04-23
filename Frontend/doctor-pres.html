@@ -281,7 +281,7 @@ function addMedicine() {
     document.getElementById("quantity").value = "";
 }
 
-function submitPrescription() {
+async function submitPrescription() {
     var patientId = document.getElementById("patientId").value;
     var diagnosis = document.getElementById("diagnosis").value;
 
@@ -296,7 +296,9 @@ function submitPrescription() {
         diagnosis: diagnosis,
         medicines: []
     };
-
+    const urlParams = new URLSearchParams(window.location.search);
+        const doctorId = urlParams.get("doctorId");
+        console.log(doctorId);
     // Retrieve medicines from table
     var medicineRows = document.getElementById("medicineList").getElementsByTagName("tr");
     for (var i = 0; i < medicineRows.length; i++) {
@@ -308,9 +310,16 @@ function submitPrescription() {
         }
     }
 
+    const resp = await fetch("http://localhost:7878/addpres", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ medicines: prescription.medicines,pid:patientId,dig:diagnosis,did: doctorId}),
+        });
     // Send prescription data to server (You need to implement this part)
     console.log(prescription); // For testing, replace with actual AJAX request
-    alert("Prescription submitted successfully!");
+    
 }
       function redirectTodashboard() {
         const urlParams = new URLSearchParams(window.location.search);
