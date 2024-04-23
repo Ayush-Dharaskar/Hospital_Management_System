@@ -257,44 +257,324 @@ body {
         padding: 20px;
          /* Prevent the background image from repeating */
         padding-top: 40px;
-        overflow-y: auto;
+        overflow-y: hidden;
         }
 
 /* styles.css */
 
-.appointment-requests {
-    margin-top: 40px;
-}
+.appointment-list {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #f5f5f5;
+  margin-left: 300px;
+  height: 450px;
+  margin-top: 100px;
+  overflow-y: hidden;
+  }
 
-.appointment-cards {
+  .appointment-list::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  .appointment-list::-webkit-scrollbar-track {
+    background: #1e1e24;
+  }
+  
+  .appointment-list::-webkit-scrollbar-thumb {
+    background: #6649b8;
+  }
+
+  .appointment-list h2{
+      text-align: center;
+  }
+  
+  .ap-title{
+  color: rgb(255, 3, 3);
+  margin-left: 650px;
+  margin-top: -45px;
+  margin-bottom: 35px;
+  font-size: 28px;
+  font-weight: 800;
+  }
+  
+  .appointments-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 500px;
+  }
+  
+  .appointments-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  }
+  
+  .appointments-list li:last-child {
+  border-bottom: none;
+  }
+
+  .beautiful-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .beautiful-list .beautiful-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    }
+    
+    /* .beautiful-list .beautiful-list-item-status-pending:hover {
+    background-color: rgb(216, 216, 216);
+    } */
+    
+    .beautiful-list .appointment-details {
+    margin-left: 10px;
+    }
+    #item1{
+      background-color: #6649b8;
+    }
+    
+    .beautiful-list .appointment-details h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    }
+    
+    .beautiful-list .appointment-details p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    }
+    
+    #textButton {
+    background: none;
+    border: none;
+    color: inherit; /* Inherit the color from the parent */
+    cursor: pointer;
+    text-decoration: underline; /* Optional: Add underline to mimic a link */
+    }
+
+
+  .beautiful-list-item-status-accepted {
+    background-color: rgb(1, 184, 1);
+  }
+  .beautiful-list-item-status-doctor {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .beautiful-list-item-status-rejected {
+    background-color: rgb(252, 103, 103);
+  }
+  .beautiful-list-item-status-pending {
+   background-color:rgb(255, 255, 99) /* Change to your desired hover color */
+}
+  .beautiful-list-item-status-pending:hover {
+      background-color: rgb(191, 191, 75); /* Change to your desired hover color */
+  }
+  
+  .beautiful-list-item-status-accepted:hover {
+      background-color: rgb(28, 146, 28); /* Change to your desired hover color */
+  }
+  
+  .beautiful-list-item-status-rejected:hover {
+    background-color: rgb(212, 8, 8); /* Change to your desired hover color */
+  }
+
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-}
-
-.appointment-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(50% - 20px); /* Adjust card width as needed */
-    box-sizing: border-box;
-}
-
-.appointment-card p {
-    margin: 5px 0;
+  }
+  .dashboard .banner:first-child {
+    height: 35vh;
+    display: flex;
+    gap: 20px;
+  }
+  .dashboard .banner:first-child .firstBox {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background: #b5b5ff;
+    padding: 20px 20px 0 10px;
+  }
+  .dashboard .banner:first-child .firstBox img {
+    height: 100%;
+    flex: 1;
+  }
+  .dashboard .banner:first-child .firstBox .content {
+    flex: 2;
+  }
+  .dashboard .banner:first-child .firstBox .content div {
+    display: flex;
+    align-items: center;
+    font-size: 34px;
+    margin-bottom: 12px;
+  }
+  .dashboard .banner:first-child .firstBox .content div p {
+    margin-right: 10px;
+    font-size: 34px;
+  }
+  .dashboard .banner:first-child .firstBox .content div h5 {
+    color: #ff008d;
+  }
+  .dashboard .banner:first-child .firstBox .content p {
     font-size: 16px;
-}
-
-.appointment-card select {
-    margin-top: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+  }
+  .dashboard .banner:first-child .secondBox {
+    background: #3939d9f2;
+    color: #fff;
+  }
+  .dashboard .banner:first-child .thirdBox {
+    color: #ff008d;
+    background: #fff;
+  }
+  .dashboard .banner:first-child .secondBox,
+  .dashboard .banner:first-child .thirdBox {
+    flex: 1;
+    border-radius: 20px;
+    padding: 20px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+  .dashboard .banner:first-child .secondBox p,
+  .dashboard .banner:first-child .thirdBox p {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .dashboard .banner:first-child .secondBox h3,
+  .dashboard .banner:first-child .thirdBox h3 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .dashboard .banner:last-child {
+    height: 65vh;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .dashboard .banner:last-child h5 {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #111;
+  }
+  .dashboard .banner table {
     width: 100%;
-    box-sizing: border-box;
-}
+    color: #111;
+    font-size: 20px;
+  }
+  .dashboard .banner table select {
+    font-size: 20px;
+    border: none;
+    width: 100%;
+    font-weight: 600;
+  }
+  .dashboard table td svg{
+    display: flex;
+    margin: 0 auto;
+  }
+  .dashboard table td .green{
+    font-size: 20px;
+    color: #16a34a;
+  }
+  .dashboard table td .red{
+    font-size: 20px;
+    color: #dc2626;
+  }
+  .dashboard .banner table select:focus {
+    outline: none;
+  }
+  .dashboard .banner table .value-pending {
+    color: #eab308;
+  }
+  .dashboard .banner table .value-accepted {
+    color: #16a34a;
+  }
+  .dashboard .banner table .value-rejected {
+    color: #dc2626;
+  }
+  .dashboard .banner table thead {
+    text-align: justify;
+    padding: 12px 0;
+  }
+  .dashboard .banner table thead th {
+    padding: 12px 0;
+  }
+  .dashboard .banner table tbody td {
+    padding: 12px 0;
+  }
+  @media (max-width: 1376px) {
+    .dashboard .banner:first-child .firstBox .content div,
+    .dashboard .banner:first-child .firstBox .content div p {
+      font-size: 26px;
+    }
+    .dashboard .banner:first-child .firstBox .content p {
+      font-size: 14px;
+    }
+    .dashboard .banner:first-child .secondBox p,
+    .dashboard .banner:first-child .thirdBox p,
+    .dashboard .banner:first-child .secondBox h3,
+    .dashboard .banner:first-child .thirdBox h3 {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 1020px) {
+    .dashboard {
+      height: fit-content;
+    }
+    .dashboard .banner:first-child,
+    .dashboard .banner:last-child {
+      flex-wrap: wrap;
+      height: fit-content;
+    }
+    .dashboard .banner:first-child .firstBox {
+      flex: none;
+      width: 100%;
+      height: 265px;
+    }
+    .dashboard .banner:first-child .secondBox,
+    .dashboard .banner:first-child .thirdBox {
+      height: 175px;
+    }
+  }
+  @media (max-width: 620px) {
+    .dashboard .banner:first-child .secondBox,
+    .dashboard .banner:first-child .thirdBox {
+      width: 100%;
+      flex: none;
+    }
+  }
+  @media (max-width: 485px) {
+    .dashboard .banner:first-child .firstBox {
+      flex-direction: column;
+      height: fit-content;
+      padding: 20px;
+    }
+    .dashboard .banner:first-child .firstBox img {
+      width: 270px;
+      height: 270px;
+      margin-bottom: 25px;
+    }
+    .dashboard .banner:first-child .firstBox div {
+      justify-content: center;
+    }
+  }
 
 /* Add more styling as needed */
 
