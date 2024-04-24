@@ -266,6 +266,54 @@
         }
       });
       document.addEventListener("DOMContentLoaded", async () => {
+
+        $("#appid").focusout(async function (event){
+          const response = await fetch("http://localhost:7878/appointmentextract", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              aid: document.getElementById("appid").value,
+            }),
+          });
+          const data = await response.json();
+          console.log(data);
+          
+          document.getElementById("department").value = data.name.dept_id;
+          const response1 = await fetch(
+              "http://localhost:7878/doctor_from_department",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  dept:data.name.dept_id,
+                }),
+              }
+            );
+            const data1 = await response1.json();
+            console.log(data1.name);
+            var doctorselect = document.getElementById("doctor");
+            doctorselect.innerHTML = "";
+            var option1 = document.createElement("option");
+            option1.value = 0;
+            option1.text = "Select Doctor";
+            doctorselect.appendChild(option1);
+            data1.name.forEach((element) => {
+              var option = document.createElement("option");
+              option.value = element.doctor_id;
+              option.text = element.doctor_name;
+              doctorselect.appendChild(option);
+            });
+          document.getElementById("doctor").value=data.name.doctor_id;
+          document.getElementById("concern").value=data.name.reason;
+          document.getElementById("appointment-date").value=data.name.adate;
+          document.getElementById("departmen1t").value=data.name.patient_id;
+        
+        })
+
         $("#appointment-form").submit(async function (event) {
           event.preventDefault();
           var FormData = {

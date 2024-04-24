@@ -98,6 +98,9 @@ if(but!=null){
       document.getElementById("gender").value=null;
      document.getElementById("dob").value=null;
       document.getElementById("blood-group").value=null;
+      document.getElementById("height").value=null;
+      document.getElementById("weight").value=null;
+      window.location.href = `patient-dashboard.html?patientId=${randd}`;
   }
 }
 // NEW PATIENT FORM

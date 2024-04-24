@@ -209,7 +209,7 @@ app.post('/patientappointments', async (req, res) => {
 });
 // Start the server
 app.listen(port, () => {
-  console.log('Server is running on port ${port}');
+  console.log(`Server is running on port ${port}`);
 });
 
 app.post('/reqappointment', async (req, res) => {
@@ -495,6 +495,23 @@ app.post('/updateappointment', async (req, res) => {
     var result = await pool.query(queryText,[time,date,status,did,aid]);
 
     res.status(200);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});
+
+
+
+app.post('/appointmentextract', async (req, res) => {
+  try {
+    var  text  = req.body.aid;
+    // console.log(text);
+    const queryText = 'select TO_CHAR(appoint_date, \'YYYY-MM-DD\') as adate,doctor_name,doctor_id,dept_id,patient_id,appoint_time,status,reason from appointment natural join doctor natural join department where appointment_id=$1';
+    const result = await pool.query(queryText,[text]);
+    // console.log(result);
+    console.log(result.rows);
+    res.json({name: result.rows[0]});
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
