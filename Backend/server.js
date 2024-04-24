@@ -517,3 +517,17 @@ app.post('/appointmentextract', async (req, res) => {
     res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
   }
 });
+
+app.post('/medicine', async (req, res) => {
+  try {
+    // console.log(text);
+    const queryText = 'select * from pharmacy';
+    const result = await pool.query(queryText);
+    // console.log(result);
+    console.log(result.rows);
+    res.json({name: result.rows});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to add text to PostgreSQL' });
+  }
+});

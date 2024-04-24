@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hospital Management System</title>
     <link rel="stylesheet" href="styles3.css" />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-9P+QuFaFgVxl+BejjWYBfrXkJv9S+Dh75n+zbdRBTIcaPwSlxB/IL8h/4Xr3LS6ENR0QIr3f6zCz6PcQ5L5tjA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    
   </head>
   <style>
     h1 {
@@ -204,7 +198,9 @@
             <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
     
             <label for="medicineName">Medicine Name:</label>
-            <input type="text" id="medicineName" placeholder="Medicine Name">
+            <select id="medicine" name="medicine" required>
+              <!-- Add more options as needed -->
+            </select>
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" placeholder="Quantity">
             <button onclick="addMedicine()">Add Medicine</button>
@@ -261,8 +257,35 @@
         
       </div>
     </div> -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script >
+       $(document).ready(async function () {
+        const resp = await fetch("http://localhost:7878/medicine", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),
+        });
+        data=await resp.json();
+        console.log(data);
+        var deptselect = document.getElementById("medicine");
+        deptselect.innerHTML = "";
+        var option1 = document.createElement("option");
+        option1.value = 0;
+        option1.text = "Select Medicine";
+        deptselect.appendChild(option1);
+        data.name.forEach((element) => {
+          
+          var option = document.createElement("option");
+          option.value = element.medicine
+          option.text = element.medicine;
+          deptselect.appendChild(option);
+        });
+
+       });
+
+
       function showPrescriptionForm() {
     var patientId = document.getElementById("patientId").value;
     if (patientId.trim() === "") {
@@ -272,7 +295,7 @@
 
     // Clear fields in the prescription form
     document.getElementById("diagnosis").value = "";
-    document.getElementById("medicineName").value = "";
+    document.getElementById("medicine").value = 0;
     document.getElementById("quantity").value = "";
 
     // Clear the medicine list table
@@ -284,7 +307,7 @@
 
 
 function addMedicine() {
-  var medicineName = document.getElementById("medicineName").value;
+  var medicineName = document.getElementById("medicine").value;
         var quantity = document.getElementById("quantity").value;
 
         if (medicineName.trim() === "" || quantity.trim() === "") {
@@ -305,7 +328,7 @@ function addMedicine() {
 
 
         // Clear input fields
-        document.getElementById("medicineName").value = "";
+        document.getElementById("medicine").value = 0;
         document.getElementById("quantity").value = "";
 }
 function deleteRow(button) {
