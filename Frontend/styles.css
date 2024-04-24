@@ -11,6 +11,10 @@ foreign key(doctor_id) references doctor(doctor_id),
 foreign key(pres_id) references prescription(pres_id)
 ) */
 
+html{
+  scroll-behavior: smooth;
+}
+
 #header{
   display: flex;
   align-items: center;
@@ -39,6 +43,7 @@ padding: 40px 80px;
 
 #name{
 margin-right: 450px;
+font-family:sans-serif;
 }
 
 .logo{
