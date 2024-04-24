@@ -330,7 +330,7 @@ app.post('/doctorappointments', async (req, res) => {
   try {
     var  text  = req.body.did;
   
-    const queryText = 'select appointment_id,TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date,status,appoint_time,reason,patient_name from appointment natural join patient where doctor_id = $1';
+    const queryText = 'select patient_id,appointment_id,TO_CHAR(appoint_date, \'DD/MM/YYYY\')as appoint_date,status,appoint_time,reason,patient_name from appointment natural join patient where doctor_id = $1';
 
     const result = await pool.query(queryText,[text]);
     console.log(result.rows);
