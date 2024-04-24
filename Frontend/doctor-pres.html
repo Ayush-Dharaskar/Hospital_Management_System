@@ -184,42 +184,43 @@
       </ul>
     </section>
 
-     <div class="main-content">
+    <div class="main-content">
       <p class="ap-title"></p>
       <div class="appointment-list">
-        <h2>Add Medical Details for patient</h2>
-        <label for="patientId">Enter Patient ID:</label>
-        <input type="text" id="patientId" placeholder="Patient ID">
-        <button onclick="showPrescriptionForm()">Add Prescription</button>
-    
-        <div id="prescriptionForm" style="display: none;">
-            <h2>Add Prescription</h2>
-            <label for="diagnosis">Diagnosis:</label>
-            <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
-    
-            <label for="medicineName">Medicine Name:</label>
-            <select id="medicine" name="medicine" required>
-              <!-- Add more options as needed -->
-            </select>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" placeholder="Quantity">
-            <button onclick="addMedicine()">Add Medicine</button>
-    
-            <table id="medicineTable">
-                <thead>
-                    <tr>
-                        <th>Medicine Name</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody id="medicineList">
-                </tbody>
-            </table>
-    
-            <button onclick="submitPrescription()">Submit Prescription</button>
-        </div>
+          <h2>Add Medical Details for patient</h2>
+          <label for="patientId">Enter Patient ID:</label>
+          <input type="text" id="patientId" placeholder="Patient ID">
+          <button onclick="showPrescriptionForm()">Add Prescription</button>
+
+          <div id="prescriptionForm" style="display: none;">
+              <h2>Add Prescription</h2>
+              <label for="diagnosis">Diagnosis:</label>
+              <textarea id="diagnosis" rows="4" placeholder="Enter diagnosis"></textarea>
+
+              <label for="medicine">Medicine Name:</label>
+              <select id="medicine" name="medicine" required>
+                  <!-- Options will be populated dynamically using JavaScript -->
+              </select>
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" placeholder="Quantity">
+              <button onclick="addMedicine()">Add Medicine</button>
+
+              <table id="medicineTable">
+                  <thead>
+                      <tr>
+                          <th>Medicine Name</th>
+                          <th>Quantity</th>
+                      </tr>
+                  </thead>
+                  <tbody id="medicineList">
+                      <!-- Medicine list will be populated dynamically using JavaScript -->
+                  </tbody>
+              </table>
+
+              <button onclick="submitPrescription()">Submit Prescription</button>
+          </div>
       </div>
-    </div>
+  </div>
 
     <!-- <div class="main-content" id="mainContent">
       <div class="patient-details">
@@ -260,150 +261,140 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script >
        $(document).ready(async function () {
-        const resp = await fetch("http://localhost:7878/medicine", {
-          method: "POST",
-          headers: {
+    // Function to fetch medicines data from the server and populate the select dropdown
+    const resp = await fetch("http://localhost:7878/medicine", {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json",
-          },
-          body: JSON.stringify(),
-        });
-        data=await resp.json();
-        console.log(data);
-        var deptselect = document.getElementById("medicine");
-        deptselect.innerHTML = "";
-        var option1 = document.createElement("option");
-        option1.value = 0;
-        option1.text = "Select Medicine";
-        deptselect.appendChild(option1);
-        data.name.forEach((element) => {
-          
-          var option = document.createElement("option");
-          option.value = element.medicine
-          option.text = element.medicine;
-          deptselect.appendChild(option);
-        });
+        },
+        body: JSON.stringify(),
+    });
+    const data = await resp.json();
+    console.log(data);
+    var medicineSelect = document.getElementById("medicine");
+    medicineSelect.innerHTML = "";
+    var option1 = document.createElement("option");
+    option1.value = "";
+    option1.text = "Select Medicine";
+    medicineSelect.appendChild(option1);
+    data.name.forEach((element) => {
+        var option = document.createElement("option");
+        option.value = element.medicine;
+        option.text = element.medicine;
+        medicineSelect.appendChild(option);
+    });
+});
 
-       });
-
-
-      function showPrescriptionForm() {
+function showPrescriptionForm() {
+    // Function to show the prescription form
     var patientId = document.getElementById("patientId").value;
     if (patientId.trim() === "") {
         alert("Please enter a patient ID.");
         return;
     }
-
     // Clear fields in the prescription form
     document.getElementById("diagnosis").value = "";
-    document.getElementById("medicine").value = 0;
+    document.getElementById("medicine").value = "";
     document.getElementById("quantity").value = "";
-
     // Clear the medicine list table
     var medicineList = document.getElementById("medicineList");
     medicineList.innerHTML = "";
-
     document.getElementById("prescriptionForm").style.display = "block";
 }
 
-
 function addMedicine() {
-  var medicineName = document.getElementById("medicine").value;
-        var quantity = document.getElementById("quantity").value;
-
-        if (medicineName.trim() === "" || quantity.trim() === "") {
-            alert("Please enter medicine name and quantity.");
-            return;
-        }
-
-        var medicineList = document.getElementById("medicineList");
-        var newRow = medicineList.insertRow();
-        var cell1 = newRow.insertCell(0);
-        var cell2 = newRow.insertCell(1);
-        var cell3 = newRow.insertCell(2);
-
-        cell1.innerHTML = medicineName;
-        cell2.innerHTML = quantity;
-        cell3.classList.add('delete-column');
-        cell3.innerHTML = "<button onclick='deleteRow(this)' class='trabut'><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" style=\"fill: white; width: 12px; height: 12px;\"><path d=\"M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z\"/></svg></button>";
-
-
-        // Clear input fields
-        document.getElementById("medicine").value = 0;
-        document.getElementById("quantity").value = "";
-}
-function deleteRow(button) {
-        var row = button.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+    // Function to add medicine to the medicine list table
+    var medicineName = document.getElementById("medicine").value;
+    var quantity = document.getElementById("quantity").value;
+    if (medicineName.trim() === "" || quantity.trim() === "") {
+        alert("Please enter medicine name and quantity.");
+        return;
     }
+    var medicineList = document.getElementById("medicineList");
+    var newRow = medicineList.insertRow();
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    cell1.innerHTML = medicineName;
+    cell2.innerHTML = quantity;
+    cell3.classList.add('delete-column');
+    cell3.innerHTML = "<button onclick='deleteRow(this)' class='trabut'><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" style=\"fill: white; width: 12px; height: 12px;\"><path d=\"M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z\"/></svg></button>";
+    // Clear input fields
+    document.getElementById("medicine").value = "";
+    document.getElementById("quantity").value = "";
+}
+
+function deleteRow(button) {
+    // Function to delete a row from the medicine list table
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
 
 async function submitPrescription() {
+    // Function to submit the prescription
+    // Retrieve patient ID, diagnosis, and medicines from the form
     var patientId = document.getElementById("patientId").value;
     var diagnosis = document.getElementById("diagnosis").value;
-
+    // Check if patient ID and diagnosis are provided
     if (patientId.trim() === "" || diagnosis.trim() === "") {
         alert("Please enter patient ID and diagnosis.");
         return;
     }
-
     // Construct prescription object
     var prescription = {
         patientId: patientId,
         diagnosis: diagnosis,
         medicines: []
     };
-    const urlParams = new URLSearchParams(window.location.search);
-        const doctorId = urlParams.get("doctorId");
-        console.log(doctorId);
     // Retrieve medicines from table
     var medicineRows = document.getElementById("medicineList").getElementsByTagName("tr");
     for (var i = 0; i < medicineRows.length; i++) {
         var cells = medicineRows[i].getElementsByTagName("td");
-        if (cells.length === 2) {
-            var medicineName = cells[0].innerHTML;
-            var quantity = cells[1].innerHTML;
+        if (cells.length === 3) {
+            var medicineName = cells[0].textContent;
+            var quantity = cells[1].textContent;
             prescription.medicines.push({ medicineName: medicineName, quantity: quantity });
         }
     }
-
+    // Send prescription data to the server
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get("doctorId");
     const resp = await fetch("http://localhost:7878/addpres", {
-          method: "POST",
-          headers: {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ medicines: prescription.medicines,pid:patientId,dig:diagnosis,did: doctorId}),
-        });
-    // Send prescription data to server (You need to implement this part)
-    console.log(prescription); // For testing, replace with actual AJAX request
-
+        },
+        body: JSON.stringify({ medicines: prescription.medicines, pid: patientId, dig: diagnosis, did: doctorId }),
+    });
+    // Reset input fields and medicine list table
     document.getElementById("diagnosis").value = "";
-    document.getElementById("medicineName").value = "";
+    document.getElementById("medicine").value = "";
     document.getElementById("quantity").value = "";
-
-    // Clear the medicine list table
-    var medicineList = document.getElementById("medicineList");
-    medicineList.innerHTML = "";
-
+    document.getElementById("medicineList").innerHTML = "";
+    // Display the prescription form again
     document.getElementById("prescriptionForm").style.display = "block";
-    
 }
-      function redirectTodashboard() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const doctorId = urlParams.get("doctorId");
-        window.location.href = `doctor-dashboard.html?doctorId=${doctorId}`;
-      }
-      function redirecttomedhis() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const doctorId = urlParams.get("doctorId");
-        window.location.href = `doctor-pres.html?doctorId=${doctorId}`;
-      }
-      function redirectToAppoi() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const doctorId = urlParams.get("doctorId");
-        window.location.href = `doctor-appointment.html?doctorId=${doctorId}`;
-      }
-    //   const urlParams = new URLSearchParams(window.location.search);
-    //   const doctorId = urlParams.get("doctorId");
-    //   window.onload = fetchDoctor(doctorId);
+
+function redirectTodashboard() {
+    // Function to redirect to the dashboard page
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get("doctorId");
+    window.location.href = `doctor-dashboard.html?doctorId=${doctorId}`;
+}
+
+function redirecttomedhis() {
+    // Function to redirect to the patient details page
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get("doctorId");
+    window.location.href = `doctor-pres.html?doctorId=${doctorId}`;
+}
+
+function redirectToAppoi() {
+    // Function to redirect to the appointments page
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctorId = urlParams.get("doctorId");
+    window.location.href = `doctor-appointment.html?doctorId=${doctorId}`;
+}
 
     </script>
   </body>
