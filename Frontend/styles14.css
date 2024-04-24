@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden; /* Disable horizontal scrolling */
-    overflow-y: hidden; /* Enable vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
     background-image: url('img/a-dark-atmospheric-hospital-website-background-ima-QibvOxOsTQaOI5cIU4OSVg-kgfHMbIaSWqOoTgZlX6M8w-.jpeg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
     background-size: cover; /* Ensure the background image covers the entire section */
     background-position: center; /* Center the background image */
@@ -549,3 +549,57 @@ body {
         border-radius: 20px;
         cursor: pointer;
       }
+
+   /* Add this CSS to your styles14.css file or include it in a <style> tag in your HTML */
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+
+.butt {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.banner {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.card::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}

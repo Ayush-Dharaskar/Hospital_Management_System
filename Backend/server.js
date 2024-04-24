@@ -141,7 +141,7 @@ app.post('/fetch', async (req, res) => {
 app.post('/newpatient', async (req, res) => {
   try {
     const text = req.body.formData; // Extract inputText from the request body
-    pid=req.body.randd;
+    // pid=req.body.randd;
     pname = text.firstName+' '+text.lastName;
     mob = text.mobileNumber;
     gender = text.gender;
@@ -151,6 +151,17 @@ app.post('/newpatient', async (req, res) => {
     weight = text.weight;
     blood = text.bloodGroup;
     dob = text.dob
+    cquery='select count(patient_id) from patient';
+    const cresult=await pool.query(cquery);
+    count=cresult.rows[0].count;
+    count=parseInt(count);
+    count=count+50001;
+    pid=count;
+    xpid=req.body.randd;
+    console.log(req.body.randd);
+    if(xpid!=0){
+      pid=req.body.randd;
+    }
     console.log(height+' '+weight);
     console.log(text);
     console.log(pid);
@@ -162,7 +173,7 @@ app.post('/newpatient', async (req, res) => {
 
     const patientResult = await pool.query(patientQuery, [pid,pname,mob,add,gender,age,height,weight,blood,dob]);
 
-    res.status(200);
+    res.status(200).json({patid:pid});
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to retrieve patient data from PostgreSQL' });
@@ -388,9 +399,16 @@ app.post('/alldoctors', async (req, res) => {
 
 app.post('/allpatients', async (req, res) => {
   try {
-
-    const queryText = 'select * patient';
-    const result = await pool.query(queryText);
+    pid=req.body.pid;
+    if(pid==-1){
+       queryText = 'select blood,weight,height,to_char(dob,\'DD/MM/YYYY\') as dob,gender,phone,patient_name,patient_id from patient';
+       result = await pool.query(queryText);
+    }
+    else{
+       queryText = 'SELECT blood, weight, height, to_char(dob, \'DD/MM/YYYY\') AS dob, gender, phone, patient_name, patient_id FROM patient WHERE patient_id::text LIKE $1::text || \'%\'';
+       result = await pool.query(queryText, [pid]);
+      
+    }
     console.log(result.rows);
     res.json({patient: result.rows});
   } catch (error) {
