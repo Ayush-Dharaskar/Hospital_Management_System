@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hospital Management System</title>
     <link rel="stylesheet" href="styles3.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-9P+QuFaFgVxl+BejjWYBfrXkJv9S+Dh75n+zbdRBTIcaPwSlxB/IL8h/4Xr3LS6ENR0QIr3f6zCz6PcQ5L5tjA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   </head>
   <style>
     h1 {
@@ -29,14 +36,15 @@
 
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color:  #6649b8;
+            border-radius: 5px;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color:  #321b72;
         }
 
         table {
@@ -44,7 +52,12 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-
+        .trabut{
+          fill: red;
+        }
+        td.delete-column {
+          width: 50px; /* Adjust this value as needed */
+        }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
@@ -52,7 +65,7 @@
         }
 
         th {
-            background-color: #4CAF50;
+            background-color:  #6649b8;
             color: white;
         }
         #item1{
@@ -256,30 +269,49 @@
         alert("Please enter a patient ID.");
         return;
     }
+
+    // Clear fields in the prescription form
+    document.getElementById("diagnosis").value = "";
+    document.getElementById("medicineName").value = "";
+    document.getElementById("quantity").value = "";
+
+    // Clear the medicine list table
+    var medicineList = document.getElementById("medicineList");
+    medicineList.innerHTML = "";
+
     document.getElementById("prescriptionForm").style.display = "block";
 }
 
+
 function addMedicine() {
-    var medicineName = document.getElementById("medicineName").value;
-    var quantity = document.getElementById("quantity").value;
+  var medicineName = document.getElementById("medicineName").value;
+        var quantity = document.getElementById("quantity").value;
 
-    if (medicineName.trim() === "" || quantity.trim() === "") {
-        alert("Please enter medicine name and quantity.");
-        return;
-    }
+        if (medicineName.trim() === "" || quantity.trim() === "") {
+            alert("Please enter medicine name and quantity.");
+            return;
+        }
 
-    var medicineList = document.getElementById("medicineList");
-    var newRow = medicineList.insertRow();
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
+        var medicineList = document.getElementById("medicineList");
+        var newRow = medicineList.insertRow();
+        var cell1 = newRow.insertCell(0);
+        var cell2 = newRow.insertCell(1);
+        var cell3 = newRow.insertCell(2);
 
-    cell1.innerHTML = medicineName;
-    cell2.innerHTML = quantity;
+        cell1.innerHTML = medicineName;
+        cell2.innerHTML = quantity;
+        cell3.classList.add('delete-column');
+        cell3.innerHTML = "<button onclick='deleteRow(this)' class='trabut'><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" style=\"fill: white; width: 12px; height: 12px;\"><path d=\"M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z\"/></svg></button>";
 
-    // Clear input fields
-    document.getElementById("medicineName").value = "";
-    document.getElementById("quantity").value = "";
+
+        // Clear input fields
+        document.getElementById("medicineName").value = "";
+        document.getElementById("quantity").value = "";
 }
+function deleteRow(button) {
+        var row = button.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
 
 async function submitPrescription() {
     var patientId = document.getElementById("patientId").value;
@@ -319,6 +351,16 @@ async function submitPrescription() {
         });
     // Send prescription data to server (You need to implement this part)
     console.log(prescription); // For testing, replace with actual AJAX request
+
+    document.getElementById("diagnosis").value = "";
+    document.getElementById("medicineName").value = "";
+    document.getElementById("quantity").value = "";
+
+    // Clear the medicine list table
+    var medicineList = document.getElementById("medicineList");
+    medicineList.innerHTML = "";
+
+    document.getElementById("prescriptionForm").style.display = "block";
     
 }
       function redirectTodashboard() {

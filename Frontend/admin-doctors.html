@@ -175,6 +175,27 @@
     <script>
       // script.js
 
+      // Get the phone input element
+const phoneInput = document.getElementById("mobile");
+// Function to validate phone number
+function validatePhoneNumber() {
+  const phoneNumber = phoneInput.value;
+  const phoneNumberPattern = /^[0-9]{10}$/;
+  if (!phoneNumberPattern.test(phoneNumber)) {
+    alert("Enter a valid 10-digit number.");
+    phoneInput.focus();
+    return false;
+  }
+}
+
+// Attach the validation function to the form’s submit event
+const form = document.getElementById("appointment-dialog");
+form.addEventListener("submit", function (event) {
+if (!validatePhoneNumber()) {
+event.preventDefault(); // Prevent form submission if validation fails
+}
+});
+
       var modal = $("#appointment-dialog");
       var btn = $("#open-appointment-dialog");
       var closeSpan = $(".close");
