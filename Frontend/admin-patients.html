@@ -122,23 +122,23 @@
     <div class="card">
       <div class="banner banner2">
         <h3>Patients:</h3>
-          <table id="appointmentsTable">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Gender</th>
-                <th>dob</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Blood Group</th>
-              </tr>
-            </thead>
-            <tbody id="appointmentsBody">
-              <!-- Appointments will be dynamically inserted here -->
-            </tbody>
-          </table>
+        <table id="appointmentsTable">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Gender</th>
+              <th>dob</th>
+              <th>Height</th>
+              <th>Weight</th>
+              <th>Blood Group</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsBody">
+            <!-- Appointments will be dynamically inserted here -->
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -224,6 +224,53 @@
     <script>
       // script.js
 
+      const phoneInput = document.getElementById("mobile-number");
+      // Function to validate phone number
+      function validatePhoneNumber() {
+        const phoneNumber = phoneInput.value;
+        const phoneNumberPattern = /^[0-9]{10}$/;
+        if (!phoneNumberPattern.test(phoneNumber)) {
+          alert("Enter a valid 10-digit number.");
+          phoneInput.focus();
+          return false;
+        }
+      }
+
+      // Attach the validation function to the form’s submit event
+      const form = document.getElementById("patientForm");
+      form.addEventListener("submit", async function (event) {
+        if (validatePhoneNumber()) {
+          formData = {
+            firstName: document.getElementById("first-name").value,
+            lastName: document.getElementById("last-name").value,
+            email: document.getElementById("email").value,
+            mobileNumber: document.getElementById("mobile-number").value,
+            gender: document.getElementById("gender").value,
+            dob: document.getElementById("dob").value,
+            bloodGroup: document.getElementById("blood-group").value,
+            height: document.getElementById("height").value,
+            weight: document.getElementById("weight").value,
+          };
+          console.log(formData);
+          const response = await fetch("http://localhost:7878/newpatient", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ formData, randd: 0 }),
+          });
+          document.getElementById("first-name").value = null;
+          document.getElementById("last-name").value = null;
+          document.getElementById("email").value = null;
+          document.getElementById("mobile-number").value = null;
+          document.getElementById("gender").value = null;
+          document.getElementById("dob").value = null;
+          document.getElementById("blood-group").value = null;
+          modal.hide();
+          alert("Patient Added Successfully"); // Prevent form submission if validation fails
+        }
+      });
+
       var modal = $("#appointment-dialog");
       var btn = $("#open-appointment-dialog");
       var closeSpan = $(".close");
@@ -248,95 +295,58 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({pid:-1}),
+          body: JSON.stringify({ pid: -1 }),
         });
         const data = await response.json();
         const tbody = document.getElementById("appointmentsBody");
-        data.patient.forEach(element => {
+        data.patient.forEach((element) => {
           console.log(element);
           const row = tbody.insertRow();
-              row.insertCell().textContent = element.patient_id;
-              row.insertCell().textContent = element.patient_name;
-              row.insertCell().textContent = element.phone;
-              row.insertCell().textContent = element.gender;
-              row.insertCell().textContent = element.dob;
-              row.insertCell().textContent = element.height;
+          row.insertCell().textContent = element.patient_id;
+          row.insertCell().textContent = element.patient_name;
+          row.insertCell().textContent = element.phone;
+          row.insertCell().textContent = element.gender;
+          row.insertCell().textContent = element.dob;
+          row.insertCell().textContent = element.height;
 
-              row.insertCell().textContent = element.weight;
-              row.insertCell().textContent = element.blood;
-          
+          row.insertCell().textContent = element.weight;
+          row.insertCell().textContent = element.blood;
         });
       });
-      
-        but=document.getElementById("patientid");
-        but.addEventListener("input", async () => {
-          pid=document.getElementById("patientid").value;
-      if(pid==""){
-        pid=-1;
-      }
-        pid=parseInt(pid);
-          const response = await fetch("http://localhost:7878/allpatients", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({pid:pid}),
-          });
-          const data = await response.json();
-          const tbody = document.getElementById("appointmentsBody");
-          tbody.innerHTML="";
-          if(data.patient.length==0)
-          {
-            alert("No such patient found");
-          }
-          else
-          {
-            data.patient.forEach(element => {
+
+      but = document.getElementById("patientid");
+      but.addEventListener("input", async () => {
+        pid = document.getElementById("patientid").value;
+        if (pid == "") {
+          pid = -1;
+        }
+        pid = parseInt(pid);
+        const response = await fetch("http://localhost:7878/allpatients", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ pid: pid }),
+        });
+        const data = await response.json();
+        const tbody = document.getElementById("appointmentsBody");
+        tbody.innerHTML = "";
+        if (data.patient.length == 0) {
+          alert("No such patient found");
+        } else {
+          data.patient.forEach((element) => {
             console.log(element);
             const row = tbody.insertRow();
             row.insertCell().textContent = element.patient_id;
-              row.insertCell().textContent = element.patient_name;
-              row.insertCell().textContent = element.phone;
-              row.insertCell().textContent = element.gender;
-              row.insertCell().textContent = element.dob;
-              row.insertCell().textContent = element.height;
-              row.insertCell().textContent = element.weight;
-              row.insertCell().textContent = element.blood;
-              });
-          }
-        });
-
-
-        $("#patientForm").submit(async function (event) {
-        event.preventDefault();
-        formData = {
-          firstName: document.getElementById("first-name").value,
-            lastName: document.getElementById("last-name").value,
-            email: document.getElementById("email").value,
-            mobileNumber: document.getElementById("mobile-number").value,
-            gender: document.getElementById("gender").value,
-            dob: document.getElementById("dob").value,
-            bloodGroup: document.getElementById("blood-group").value,
-            height:document.getElementById("height").value,
-            weight:document.getElementById("weight").value,
-        };
-        console.log(formData);
-        const response = await fetch('http://localhost:7878/newpatient', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ formData,randd:0})
-    });
-      document.getElementById("first-name").value=null;
-      document.getElementById("last-name").value=null;
-       document.getElementById("email").value=null;
-      document.getElementById("mobile-number").value=null;
-      document.getElementById("gender").value=null;
-     document.getElementById("dob").value=null;
-      document.getElementById("blood-group").value=null;
-        modal.hide();
-        alert("Patient Added Successfully");
+            row.insertCell().textContent = element.patient_name;
+            row.insertCell().textContent = element.phone;
+            row.insertCell().textContent = element.gender;
+            row.insertCell().textContent = element.dob;
+            row.insertCell().textContent = element.height;
+            row.insertCell().textContent = element.weight;
+            row.insertCell().textContent = element.blood;
+          });
+        }
       });
     </script>
   </body>

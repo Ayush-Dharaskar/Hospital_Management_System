@@ -237,6 +237,26 @@ window.location.href = `patient-dashboard.html?patientId=${username}`;
       document.getElementById('errorMessage').textContent = 'Invalid username or password';
     }
   });
+
+  const phoneInput = document.getElementById("mobile-number");
+      // Function to validate phone number
+      function validatePhoneNumber() {
+        const phoneNumber = phoneInput.value;
+        const phoneNumberPattern = /^[0-9]{10}$/;
+        if (!phoneNumberPattern.test(phoneNumber)) {
+          alert("Enter a valid 10-digit number.");
+          phoneInput.focus();
+          return false;
+        }
+      }
+
+      // Attach the validation function to the form’s submit event
+      const form = document.getElementById("patientForm");
+      form.addEventListener("submit", function (event) {
+        if (!validatePhoneNumber()) {
+          event.preventDefault(); // Prevent form submission if validation fails
+        }
+      });
   
 
 
